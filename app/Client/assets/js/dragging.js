@@ -42,19 +42,19 @@ app.stage.on('pointerup', onDragEnd);
 app.stage.on('pointerupoutside', onDragEnd);
 
 blokContainer.addEventListener('mouseenter', () => {
-    app.stage.on('pointermove', onDragMove);
+  app.stage.on('pointermove', onDragMove);
 });
 
 blokContainer.addEventListener('mouseleave', () => {
-    app.stage.off('pointermove', onDragMove);
-    if (isDragging) {
-        onDragEnd();
-    }
+  app.stage.off('pointermove', onDragMove);
+  if (isDragging) {
+    onDragEnd();
+  }
 });
 
 function onDragMove(event) {
-    dragTarget.parent.toLocal(event.global, null, dragTarget.position);
-
+        dragTarget.parent.toLocal(event.global, null, dragTarget.position);
+    
     const newPositionX = dragTarget.x + event.data.originalEvent.movementX;
     const newPositionY = dragTarget.y + event.data.originalEvent.movementY;
 
