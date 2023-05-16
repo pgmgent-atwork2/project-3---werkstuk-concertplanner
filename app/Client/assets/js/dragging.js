@@ -17,6 +17,7 @@ createPiano(
     160 // height in pixels
 );
 
+
 function createPiano(x, y, widthPixels, heightPixels) {
     const piano = new PIXI.Sprite(texture);
     piano.interactive = true;
