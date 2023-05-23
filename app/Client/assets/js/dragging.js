@@ -1,5 +1,8 @@
 const app = new PIXI.Application({
-    backgroundColor: 0xffc0cb
+    backgroundColor: 0xffc0cb,
+    with: 800,
+    height: 800
+
 });
 const blokContainer = document.getElementById('blok');
 blokContainer.appendChild(app.view);
