@@ -1,0 +1,14 @@
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+  
+  blok {
+    width: 30rem;
+    height: 20rem;
+    background: hsl(340, 57%, 64%);
+  }
+  
+  img {
+    display: none;
+  }
