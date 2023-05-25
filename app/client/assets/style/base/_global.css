@@ -1,14 +1,44 @@
+body {
+  overflow-x: hidden;
+}
+
 .container {
-    max-width: 1170px;
-    margin: 0 auto;
-  }
+  max-width: 1170px;
+  margin: 0 auto;
+  background-color: var(--accent);
+}
+
+.block {
+  padding: 1.5rem;
+}
+
+input {
+  border-radius: 0;
+  border: .5px solid var(--dark);
+}
   
-  blok {
-    width: 30rem;
-    height: 20rem;
-    background: hsl(340, 57%, 64%);
-  }
+blok {
+  width: 30rem;
+  height: 20rem;
+  background: hsl(340, 57%, 64%);
+}
   
-  img {
-    display: none;
-  }
+img {
+  display: none;
+}
+
+span {
+  display: block;
+}
+
+a {
+  color: var(--dark);
+}
+
+.active {
+  color: var(--secondary);
+}
+
+.underline {
+  border-bottom: 1px solid var(--dark);
+}

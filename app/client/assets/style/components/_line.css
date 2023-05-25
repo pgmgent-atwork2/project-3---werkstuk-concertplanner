@@ -1,0 +1,5 @@
+.line {
+    background-color: var(--secondary);
+    width: 5px;
+    height: 2rem;
+}

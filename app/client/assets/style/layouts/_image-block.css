@@ -1,0 +1,22 @@
+.block--image {
+    background-color: var(--primary);
+    width: 50%;
+    height: 100vh;
+}
+
+.page--half {
+    width: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    & .page--half-form {
+        width: 25rem;
+        position: absolute;
+        align-self: center;
+    }
+
+    & .title--first a:not(.active) {
+        color: var(--light);
+    }
+}
