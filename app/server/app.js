@@ -5,7 +5,12 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import DataSource from "./lib/DataSource.js";
 
+import { create } from "express-handlebars";
+import HandlebarsHelpers from "./lib/HandleBarsHelpers.js";
+
 import { VIEWS_PATH } from "./constants.js";
+
+import { home } from "./controllers/home.js";
 
 /* Setup express server */
 const app = express();
@@ -13,6 +18,22 @@ app.use(express.static("client"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+/* Add handlebars to app */
+const hbs = create({
+  helpers: HandlebarsHelpers,
+  extname: "hbs",
+  defaultLayout: "main",
+  layoutsDir: path.resolve("server", "views", "layouts"),
+  partialDir: path.resolve("server", "views", "partials"),
+});
+
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+app.set('views', VIEWS_PATH);
+
+/* App routing */
+app.get('/', home)
 
 /* Start the server */
 if (process.env.NODE_ENV !== "test") {
