@@ -12,6 +12,18 @@ import { VIEWS_PATH } from "./constants.js";
 
 import { home } from "./controllers/home.js";
 
+import {
+  login,
+  register,
+  postLogin,
+  postRegister,
+  logout,
+} from "./controllers/authentication.js";
+
+import registerAuth from "./middleware/validation/registerAuth.js";
+import loginAuth from "./middleware/validation/loginAuth.js";
+import { jwtAuth } from "./middleware/jwtAuth.js";
+
 /* Setup express server */
 const app = express();
 app.use(express.static("client"));
@@ -28,12 +40,17 @@ const hbs = create({
   partialDir: path.resolve("server", "views", "partials"),
 });
 
-app.engine('hbs', hbs.engine);
-app.set('view engine', 'hbs');
-app.set('views', VIEWS_PATH);
+app.engine("hbs", hbs.engine);
+app.set("view engine", "hbs");
+app.set("views", VIEWS_PATH);
 
 /* App routing */
-app.get('/', home)
+app.get("/", jwtAuth, home);
+app.get("/login", login);
+app.get("/register", register);
+app.post("/login", loginAuth, postLogin, login);
+app.post("/register", registerAuth, postRegister, register);
+app.post("/logout", logout);
 
 /* Start the server */
 if (process.env.NODE_ENV !== "test") {
