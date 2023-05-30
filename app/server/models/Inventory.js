@@ -16,6 +16,9 @@ export default new EntitySchema({
     size: {
       type: "int",
     },
+    color: {
+      type: "varchar",
+    },
     quantity: {
       type: "int",
     },
