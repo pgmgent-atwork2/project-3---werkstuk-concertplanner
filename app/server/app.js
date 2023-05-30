@@ -13,10 +13,10 @@ import { VIEWS_PATH } from "./constants.js";
 import { home } from "./controllers/home.js";
 
 import {
-  login,
   register,
-  postLogin,
+  login,
   postRegister,
+  postLogin,
   logout,
 } from "./controllers/authentication.js";
 

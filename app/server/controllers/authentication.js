@@ -6,9 +6,14 @@ import DataSource from "../lib/DataSource.js";
 /* Repository instances */
 const userRepo = await DataSource.getRepository("User");
 const userMetaRepo = await DataSource.getRepository("UserMeta");
-const roleRepo = await DataSource.getRepository("Role");
 
 export const register = async (req, res) => {
+  const val = validationResult(req);
+
+  const helperError = (errors) => {
+    return val.errors.find((error) => error.path === errors)?.msg ?? null;
+  };
+
   // errors
   const { formErrors } = req;
 
@@ -19,46 +24,46 @@ export const register = async (req, res) => {
       label: "Groepnaam of gebruikersnaam",
       type: "text",
       value: req.body?.name ? req.body.name : "",
-      error: req.formErrorFields?.name ? req.formErrorFields.name : null,
+      error: helperError("name"),
     },
     {
       name: "email",
       label: "Email",
       type: "text",
       value: req.body?.email ? req.body.email : "",
-      error: req.formErrorFields?.email ? req.formErrorFields.email : null,
+      error: helperError("email"),
     },
     {
       name: "phone",
       label: "Telefoon / GSM",
       type: "text",
       value: req.body?.phone ? req.body.phone : "",
-      error: req.formErrorFields?.phone ? req.formErrorFields.phone : null,
+      error: helperError("phone"),
     },
     {
       name: "password",
       label: "Wachtwoord",
       type: "password",
       password: req.body?.password ? req.body.password : "",
-      error: req.formErrorFields?.password
-        ? req.formErrorFields.password
-        : null,
+      error: helperError("password"),
     },
   ];
-
-  // get the roles
-  const roles = await roleRepo.find();
 
   // render the register page
   res.render("register", {
     layout: "authentication",
     inputs,
     formErrors,
-    roles,
   });
 };
 
 export const login = async (req, res) => {
+  const val = validationResult(req);
+
+  const helperError = (errors) => {
+    return val.errors.find((error) => error.path === errors)?.msg ?? null;
+  };
+
   // errors
   const { formErrors } = req;
 
@@ -67,18 +72,16 @@ export const login = async (req, res) => {
     {
       name: "email",
       label: "Email",
-      type: "email",
+      type: "text",
       value: req.body?.email ? req.body.email : "",
-      error: req.formErrorFields?.email ? req.formErrorFields.email : null,
+      error: helperError("email"),
     },
     {
       name: "password",
-      label: "Wachtwoord",
+      label: "Password",
       type: "password",
       password: req.body?.password ? req.body.password : "",
-      error: req.formErrorFields?.password
-        ? req.formErrorFields.password
-        : null,
+      error: helperError("password"),
     },
   ];
 
@@ -108,30 +111,16 @@ export const postRegister = async (req, res, next) => {
 
       return next();
     }
-
+    console.log(req.body.email);
     const userExists = await userRepo.findOne({
       where: {
         email: req.body.email,
       },
-      relations: ["roles"],
     });
-
-    const role = await roleRepo.findOne({
-      where: {
-        label: req.body.roles,
-        // label: 'Admin',
-      },
-    });
-
-    // check if role exists
-    if (!role) {
-      req.formErrors = [{ message: "Rol bestaat niet." }];
-      return next();
-    }
 
     // check if user already exists
     if (userExists) {
-      req.formErrors = [{ message: "Gebruiker bestaat al." }];
+      req.formErrors = [{ message: "Deze gebruiker bestaat al." }];
       return next();
     }
 
@@ -142,7 +131,6 @@ export const postRegister = async (req, res, next) => {
     const user = await userRepo.create({
       email: emailLowercase,
       password: hashedPassword,
-      roles: role.id,
     });
     await userRepo.save(user);
     const userMeta = await userMetaRepo.create({
@@ -175,6 +163,8 @@ export const postLogin = async (req, res, next) => {
 
       return next();
     }
+
+    // change email to lowercase in database
     const emailLowercase = req.body.email.toLowerCase();
 
     // get a user with a specific email
@@ -186,12 +176,12 @@ export const postLogin = async (req, res, next) => {
 
     // authentication validation
     if (!user) {
-      req.formErrors = [{ message: "Gebruiker bestaat niet." }];
+      req.formErrors = [{ message: "Deze gebruiker bestaat niet." }];
       return next();
     }
 
     // compare hashed password with saved hashed password
-    const givenPassword = req.body.password;
+    const givenPassword = req.body.password; // supersecret
     const dbPassword = user.password;
     // true or false
     const isAMatch = bcrypt.compareSync(givenPassword, dbPassword);
