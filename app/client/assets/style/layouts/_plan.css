@@ -1,4 +1,10 @@
 img {
   display: inline;
-  width: 20rem;
+  width: 10rem;
+}
+
+.flex-podium {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
 }
