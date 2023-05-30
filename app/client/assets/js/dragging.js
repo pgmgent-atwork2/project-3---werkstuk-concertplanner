@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const app = new PIXI.Application({
     transparent: true,
     width: 1000,
-    height: 500,
+    height: 1000,
   });
 
   const blokContainer = document.getElementById("canvas");
@@ -15,28 +15,28 @@ document.addEventListener("DOMContentLoaded", () => {
   app.stage.addChild(backgroundSprite);
 
   // Define grid properties
-const gridSize = 20; // Size of each grid cell
-const gridColor = 0xCCCCCC; // Color of the grid lines
+  const gridSize = 10; // Size of each grid cell
+  const gridColor = 0xcccccc; // Color of the grid lines
 
-// Create a graphics object for drawing
-const gridGraphics = new PIXI.Graphics();
+  // Create a graphics object for drawing
+  const gridGraphics = new PIXI.Graphics();
 
-// Draw vertical grid lines
-for (let x = 0; x <= app.renderer.width; x += gridSize) {
-  gridGraphics.lineStyle(1, gridColor);
-  gridGraphics.moveTo(x, 0);
-  gridGraphics.lineTo(x, app.renderer.height);
-}
+  // Draw vertical grid lines
+  for (let x = 0; x <= app.renderer.width; x += gridSize) {
+    gridGraphics.lineStyle(1, gridColor);
+    gridGraphics.moveTo(x, 0);
+    gridGraphics.lineTo(x, app.renderer.height);
+  }
 
-// Draw horizontal grid lines
-for (let y = 0; y <= app.renderer.height; y += gridSize) {
-  gridGraphics.lineStyle(1, gridColor);
-  gridGraphics.moveTo(0, y);
-  gridGraphics.lineTo(app.renderer.width, y);
-}
+  // Draw horizontal grid lines
+  for (let y = 0; y <= app.renderer.height; y += gridSize) {
+    gridGraphics.lineStyle(1, gridColor);
+    gridGraphics.moveTo(0, y);
+    gridGraphics.lineTo(app.renderer.width, y);
+  }
 
-// Add the grid to the stage
-app.stage.addChild(gridGraphics);
+  // Add the grid to the stage
+  app.stage.addChild(gridGraphics);
 
   // Create an array to store the selected list items
   const selectedItems = [];
@@ -82,7 +82,7 @@ app.stage.addChild(gridGraphics);
 
       // Create a container for each draggable element
       const container = new PIXI.Container();
-      container.position.set(100, 100); // Set the initial position according to your requirements
+      container.position.set(500, 250); // Set the initial position according to your requirements
       container.interactive = true;
       container.buttonMode = true;
       container.cursor = "grab";
@@ -90,8 +90,8 @@ app.stage.addChild(gridGraphics);
       // Create a sprite from the item image
       const sprite = PIXI.Sprite.from(item.src);
       sprite.anchor.set(0.5);
-      sprite.width = 50; // Set the width to 100 pixels
-      sprite.height = 50; // Set the height to 100 pixels
+      sprite.width = 40; // Set the width to 100 pixels
+      sprite.height = 40; // Set the height to 100 pixels
       container.addChild(sprite);
 
       // Event listeners for drag functionality
@@ -128,34 +128,48 @@ app.stage.addChild(gridGraphics);
         null,
         dragTarget.position
       );
-  
+
       let collisionDetected = false;
       selectedItems.forEach((item) => {
         if (item !== dragTarget && makeBounds(dragTarget, item)) {
           collisionDetected = true;
-          return;
+          const dx = newPosition.x - item.position.x;
+          const dy = newPosition.y - item.position.y;
+          const absDX = Math.abs(dx);
+          const absDY = Math.abs(dy);
+
+          if (absDX > absDY) {
+            dragTarget.position.x =
+              dx > 0
+                ? item.position.x + item.width + 1
+                : item.position.x - dragTarget.width - 1;
+          } else {
+            dragTarget.position.y =
+              dy > 0
+                ? item.position.y + item.height + 1
+                : item.position.y - dragTarget.height - 1;
+          }
         }
       });
-  
+
       if (!collisionDetected) {
         // Calculate the closest grid position
         const snapX = Math.round(newPosition.x / gridSize) * gridSize;
         const snapY = Math.round(newPosition.y / gridSize) * gridSize;
-  
+
         // Update the position to the snapped position
         dragTarget.position.set(snapX, snapY);
       }
     }
   }
-  
-  
+
   function onDragStart(event) {
     this.alpha = 0.5;
     dragTarget = this;
     dragTarget.lastValidPosition = dragTarget.position.clone(); // Store the last valid position
     app.stage.on("pointermove", onDragMove);
     event.stopPropagation();
-  
+
     const bounds = getBounds(this);
     console.log("Bounds:", bounds);
   }
@@ -164,7 +178,45 @@ app.stage.addChild(gridGraphics);
     if (dragTarget) {
       app.stage.off("pointermove", onDragMove);
       dragTarget.alpha = 1;
+  
+      let collisionDetected = false;
+      let closestItem = null;
+      let closestDistance = Number.MAX_VALUE;
+  
+      selectedItems.forEach((item) => {
+        if (item !== dragTarget && makeBounds(dragTarget, item)) {
+          collisionDetected = true;
+          const distance = Math.sqrt(
+            Math.pow(dragTarget.position.x - item.position.x, 2) +
+            Math.pow(dragTarget.position.y - item.position.y, 2)
+          );
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestItem = item;
+          }
+        }
+      });
+  
+      if (collisionDetected) {
+        // Calculate the closest grid position relative to the collided item
+        const snapX = Math.round(closestItem.position.x / gridSize) * gridSize;
+        const snapY = Math.round(closestItem.position.y / gridSize) * gridSize;
+  
+        // Snap to the closest grid position
+        dragTarget.position.set(snapX, snapY);
+      } else {
+        // Calculate the closest grid position
+        const snapX = Math.round(dragTarget.position.x / gridSize) * gridSize;
+        const snapY = Math.round(dragTarget.position.y / gridSize) * gridSize;
+  
+        // Snap to the closest grid position
+        dragTarget.position.set(snapX, snapY);
+      }
+  
       dragTarget = null;
     }
   }
+  
+  
+  
 });
