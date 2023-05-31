@@ -1,4 +1,6 @@
 :root {
+    --read-text-size: 17px;
+
     --bright: hsl(0, 0%, 100%);
     --light: hsl(0, 0%, 76%);
     --dark: hsl(0, 0%, 0%);
@@ -6,8 +8,11 @@
     --secondary: hsl(33, 41%, 57%);
     --tertiairy: hsl(5, 80%, 58%);
     --accent: hsl(189, 50%, 92%);
+    --hover-color: hsl(0, 0%, 50%);
+
+    --padding-base: 1.5rem;
 
     --spacing-s: 1rem;
     --spacing-m: 2rem;
-    --spacin-l: 7.6rem;
+    --spacing-l: 7.6rem;
 }

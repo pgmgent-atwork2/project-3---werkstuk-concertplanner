@@ -1,0 +1,29 @@
+.block {
+    padding: 1.5rem;
+    position: relative;
+
+    &.block--lightblue {
+        background-color: var(--accent);
+        padding: 6rem 1.5rem;
+        overflow: hidden;
+
+        & h2 {
+            transform: translateX(calc(var(--spacing-s) / 2 * -1));
+        }
+
+        & .block--lightblue__text {
+            max-width: 50%;
+        }
+
+        & p {
+            margin-bottom: var(--spacing-m);
+        }
+
+        & .circle-shape {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: calc(var(--spacing-l) * -1);
+        }
+    }
+}
