@@ -38,6 +38,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add the grid to the stage
   app.stage.addChild(gridGraphics);
 
+  // Select the color elements from the legend
+  const colorElements = document.querySelectorAll("#legend .color");
+
+  // Variable to store the selected color
+  let selectedColor = 0xff0000; // Default to red color
+
+  // Add event listeners to the color elements
+  colorElements.forEach((colorElement) => {
+    const color = colorElement.dataset.color;
+
+    // Change the selected color when a color element is clicked
+    colorElement.addEventListener("click", () => {
+      selectedColor = parseInt(color);
+      colorElements.forEach((element) => {
+        element.classList.remove("selected");
+      });
+      colorElement.classList.add("selected");
+    });
+  });
+
   // Create an array to store the selected list items
   const selectedItems = [];
 
@@ -105,6 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Add the container to the selectedItems array
       selectedItems.push(container);
+      // Apply the selected color to the sprite
+      sprite.tint = selectedColor;
     });
   });
 
@@ -178,17 +200,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (dragTarget) {
       app.stage.off("pointermove", onDragMove);
       dragTarget.alpha = 1;
-  
+
       let collisionDetected = false;
       let closestItem = null;
       let closestDistance = Number.MAX_VALUE;
-  
+
       selectedItems.forEach((item) => {
         if (item !== dragTarget && makeBounds(dragTarget, item)) {
           collisionDetected = true;
           const distance = Math.sqrt(
             Math.pow(dragTarget.position.x - item.position.x, 2) +
-            Math.pow(dragTarget.position.y - item.position.y, 2)
+              Math.pow(dragTarget.position.y - item.position.y, 2)
           );
           if (distance < closestDistance) {
             closestDistance = distance;
@@ -196,27 +218,24 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       });
-  
+
       if (collisionDetected) {
         // Calculate the closest grid position relative to the collided item
         const snapX = Math.round(closestItem.position.x / gridSize) * gridSize;
         const snapY = Math.round(closestItem.position.y / gridSize) * gridSize;
-  
+
         // Snap to the closest grid position
         dragTarget.position.set(snapX, snapY);
       } else {
         // Calculate the closest grid position
         const snapX = Math.round(dragTarget.position.x / gridSize) * gridSize;
         const snapY = Math.round(dragTarget.position.y / gridSize) * gridSize;
-  
+
         // Snap to the closest grid position
         dragTarget.position.set(snapX, snapY);
       }
-  
+
       dragTarget = null;
     }
   }
-  
-  
-  
 });
