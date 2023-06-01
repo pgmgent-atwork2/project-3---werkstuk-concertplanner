@@ -1,0 +1,45 @@
+.footer {
+    font-size: var(--read-text-size);
+    line-height: 1.5;
+    color: var(--bright);
+    background-color: var(--dark);
+    padding: 4.1rem var(--padding-base);
+
+    & .container {
+        justify-content: space-between;
+    }
+
+    & .footer__title {
+        display: block;
+        margin-bottom: var(--spacing-s);
+    }
+
+    & .newsletter-title {
+        margin-bottom: var(--spacing-m);
+    }
+
+    & .btn {
+        margin-bottom: var(--spacing-m);
+    }
+
+    & address {
+        font-style: normal;
+    }
+
+    & a {
+        color: var(--secondary);
+    }
+
+    & .unactive {
+        color: var(--bright);
+    }
+
+    & .footer__about-space {
+        margin: var(--spacing-s) 0;
+    }
+
+    & .footer__socials {
+        gap: var(--spacing-s);
+        margin-bottom: var(--spacing-m);
+    }
+}

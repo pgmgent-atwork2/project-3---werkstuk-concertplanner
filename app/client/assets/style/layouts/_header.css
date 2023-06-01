@@ -1,0 +1,32 @@
+.header {
+    padding: var(--spacing-m) var(--padding-base) calc(var(--spacing-m) * 2) var(--padding-base);
+
+    & .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    & .nav__list {
+        display: flex;
+        gap: var(--spacing-s);
+    }
+
+    & a {
+        transition: all .2s ease;
+        background-color: var(--bright);
+        /*padding: calc(var(--spacing-s) / 2) var(--spacing-s);*/
+    }
+
+    & a:hover {
+        color: var(--secondary);
+    }
+
+    & .circle-shape {
+        height: 100%;
+        position: absolute;
+        top: calc(var(--spacing-l) * -2);
+        right: calc(var(--spacing-l) * -1);
+        z-index: -1;
+    }
+}

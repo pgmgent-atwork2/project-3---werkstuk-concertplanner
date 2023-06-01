@@ -2,7 +2,7 @@
     & fieldset {
         padding: 0;
         border: none;
-        margin-bottom: var(--spacing-s);
+        margin-bottom: var(--spacing-m);
         display: flex;
         flex-direction: column;
         gap: var(--spacing-m);
@@ -12,5 +12,23 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
+    }
+
+    & .form-item {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    & .error {
+        color: var(--tertiairy);
+        font-size: 1rem;
+        transform: translateY(5.5rem);
+        position: absolute;
+        align-self: flex-end;
+    }
+
+    & input[type=submit]:hover {
+        cursor: pointer;
     }
 }

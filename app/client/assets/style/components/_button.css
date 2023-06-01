@@ -1,6 +1,22 @@
 .btn {
     color: var(--bright);
     background-color: var(--primary);
-    padding: calc(var(--spacing-s) / 2) var(--spacing-s);
+    padding: calc(var(--spacing-s) / 1.5) var(--spacing-s);
+    border: none;
     margin-top: var(--spacing-s);
+    transition: all .2s ease;
+
+    &.btn:hover {
+        background-color: var(--hover-color);
+    }
+
+    &.btn--secondary {
+        color: var(--bright);
+        background-color: var(--secondary);
+    }
+
+    &.btn--tertiairy {
+        color: var(--bright);
+        background-color: var(--tertiairy);
+    }
 }
