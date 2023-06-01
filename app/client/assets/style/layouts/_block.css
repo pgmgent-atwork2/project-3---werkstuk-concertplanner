@@ -1,5 +1,5 @@
 .block {
-    padding: 1.5rem;
+    padding: 0 1.5rem;
     position: relative;
 
     &.block--lightblue {
@@ -9,10 +9,6 @@
 
         & h2 {
             transform: translateX(calc(var(--spacing-s) / 2 * -1));
-        }
-
-        & .block--lightblue__text {
-            max-width: 50%;
         }
 
         & p {
@@ -26,4 +22,8 @@
             right: calc(var(--spacing-l) * -1);
         }
     }
+}
+
+.block__text {
+    max-width: 50%;
 }

@@ -7,15 +7,22 @@
         align-items: center;
     }
 
+    & .nav__logo {
+        transform: translateX(-.4rem);
+    }
+
     & .nav__list {
         display: flex;
-        gap: var(--spacing-s);
+        gap: var(--spacing-m);
+        
+        & a {
+            padding: calc(var(--spacing-s) / 2) 0;
+        }
     }
 
     & a {
         transition: all .2s ease;
         background-color: var(--bright);
-        /*padding: calc(var(--spacing-s) / 2) var(--spacing-s);*/
     }
 
     & a:hover {

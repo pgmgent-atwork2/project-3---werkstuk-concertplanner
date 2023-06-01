@@ -3,10 +3,13 @@
     line-height: 1.5;
     color: var(--bright);
     background-color: var(--dark);
-    padding: 4.1rem var(--padding-base);
 
     & .container {
         justify-content: space-between;
+    }
+
+    & .footer__content {
+        padding: 4.1rem var(--padding-base);
     }
 
     & .footer__title {

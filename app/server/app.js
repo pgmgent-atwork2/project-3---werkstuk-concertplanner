@@ -19,6 +19,14 @@ import {
   postLogin,
   logout,
 } from "./controllers/authentication.js";
+import {
+  requesting,
+  postRequest,
+  getCurrentUser,
+} from "./controllers/request.js";
+import { getInventory } from "./controllers/inventory.js";
+import { getPlan } from "./controllers/plan.js";
+import { getHistory } from "./controllers/history.js";
 
 import registerAuth from "./middleware/validation/registerAuth.js";
 import loginAuth from "./middleware/validation/loginAuth.js";
@@ -46,11 +54,21 @@ app.set("views", VIEWS_PATH);
 
 /* App routing */
 app.get("/", jwtAuth, home);
+
 app.get("/login", login);
 app.get("/register", register);
 app.post("/login", loginAuth, postLogin, login);
 app.post("/register", registerAuth, postRegister, register);
 app.post("/logout", logout);
+
+app.get("/beschikbaar-materiaal", jwtAuth, getInventory);
+
+app.get("/plan-opstellen", jwtAuth, getPlan);
+
+app.get("/geschiedenis", jwtAuth, getHistory);
+
+app.get("/vraag-aan", jwtAuth, getCurrentUser);
+app.post("/vraag-aan", jwtAuth, postRequest, requesting);
 
 /* Start the server */
 if (process.env.NODE_ENV !== "test") {

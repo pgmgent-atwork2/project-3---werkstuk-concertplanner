@@ -111,7 +111,7 @@ export const postRegister = async (req, res, next) => {
 
       return next();
     }
-    console.log(req.body.email);
+
     const userExists = await userRepo.findOne({
       where: {
         email: req.body.email,
@@ -131,6 +131,7 @@ export const postRegister = async (req, res, next) => {
     const user = await userRepo.create({
       email: emailLowercase,
       password: hashedPassword,
+      roles: { id: 1 },
     });
     await userRepo.save(user);
     const userMeta = await userMetaRepo.create({

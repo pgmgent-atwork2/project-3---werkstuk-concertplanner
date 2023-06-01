@@ -2,44 +2,32 @@ import typeorm from "typeorm";
 const { EntitySchema } = typeorm;
 
 export default new EntitySchema({
-  name: "User",
-  tableName: "users",
+  name: "Request",
+  tableName: "requests",
   columns: {
     id: {
       primary: true,
       type: "int",
       generated: true,
     },
-    email: {
+    subject: {
       type: "varchar",
       nullable: true,
     },
-    password: {
+    description: {
       type: "varchar",
       nullable: true,
     },
   },
   relations: {
-    user_meta: {
-      target: "UserMeta",
-      type: "one-to-one",
-      inverseSide: "users",
-      cascade: true,
-    },
-    roles: {
-      target: "Role",
+    user: {
+      target: "User",
       type: "many-to-one",
-      inverseSide: "user",
       joinColumn: {
-        name: "role_id",
+        name: "user_id",
       },
       onDelete: "CASCADE",
-    },
-    requests: {
-      target: "Request",
-      type: "one-to-many",
-      inverseSide: "user",
-      cascade: true,
+      inverseSide: "requests",
     },
   },
 });

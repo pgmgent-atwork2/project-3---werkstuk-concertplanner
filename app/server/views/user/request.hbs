@@ -1,0 +1,27 @@
+<div class="container">
+    <section class="block block__text">
+        <h1 class="title--second">
+            Vraag aan
+        </h1>
+
+        <p>
+            Ziet u een bepaald instrument niet staan of zijn er niet genoeg van een specifiek element? Aarzel dan niet om ons te contacteren! Wij kunnen u misschien helpen met het probleem.
+        </p>
+    </section>
+
+    <section>
+        <form action="/aanvragen" method="post">
+            <fieldset>
+                <input type="hidden" value="{{user.id}}" name="userId">
+
+                <input type="text" name="subject">
+
+                <input type="text" name="description">
+            </fieldset>
+
+            <button type="submit">
+                Verzenden
+            </button>
+        </form>
+    </section>
+</div>
