@@ -38,26 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add the grid to the stage
   app.stage.addChild(gridGraphics);
 
-  // Select the color elements from the legend
-  const colorElements = document.querySelectorAll("#legend .color");
-
-  // Variable to store the selected color
-  let selectedColor = 0xff0000; // Default to red color
-
-  // Add event listeners to the color elements
-  colorElements.forEach((colorElement) => {
-    const color = colorElement.dataset.color;
-
-    // Change the selected color when a color element is clicked
-    colorElement.addEventListener("click", () => {
-      selectedColor = parseInt(color);
-      colorElements.forEach((element) => {
-        element.classList.remove("selected");
-      });
-      colorElement.classList.add("selected");
-    });
-  });
-
   // Create an array to store the selected list items
   const selectedItems = [];
 
@@ -125,8 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Add the container to the selectedItems array
       selectedItems.push(container);
-      // Apply the selected color to the sprite
-      sprite.tint = selectedColor;
     });
   });
 

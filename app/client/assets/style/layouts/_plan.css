@@ -21,33 +21,4 @@ img {
   overflow-y: scroll;
 }
 
-#legend {
-  margin-top: 20px;
-}
-
-.color {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  margin-right: 10px;
-  cursor: pointer;
-  border: 1px solid #000;
-}
-
-.selected {
-  border: 2px solid #000;
-}
-
-#color-red { 
-  background-color: red;
-}
-
-#color-green {
-  background-color: green;
-}
-
-#color-blue {
-  background-color: blue;
-}
-
 
