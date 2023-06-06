@@ -128,18 +128,15 @@ export const postRegister = async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     const emailLowercase = req.body.email.toLowerCase();
 
-    const user = await userRepo.create({
+    const user = await userRepo.save({
       email: emailLowercase,
       password: hashedPassword,
-      roles: { id: 1 },
+      role: { id: 1 },
     });
-    await userRepo.save(user);
-    const userMeta = await userMetaRepo.create({
+    const userMeta = await userMetaRepo.save({
       ...req.body,
-      users: user.id,
+      user: user.id,
     });
-
-    await userMetaRepo.save(userMeta);
 
     res.redirect("/login");
   } catch (e) {

@@ -18,8 +18,7 @@ export default new EntitySchema({
     users: {
       target: "User",
       type: "one-to-many",
-      inverseSide: "Role",
-      cascade: true,
+      inverseSide: "role",
     },
   },
 });
