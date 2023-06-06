@@ -202,6 +202,7 @@ export const postLogin = async (req, res, next) => {
     // redirect to our root
     return res.redirect("/");
   } catch (e) {
+    console.log("in catch");
     next(e.message);
   }
 };

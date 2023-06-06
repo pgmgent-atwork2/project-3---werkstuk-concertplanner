@@ -1,0 +1,40 @@
+:root {
+    /* text */
+    --read-text-size: 17px;
+
+    /* normal colors */
+    --bright: hsl(0, 0%, 100%);
+    --light: hsl(0, 0%, 76%);
+    --dark: hsl(0, 0%, 0%);
+    --primary: hsl(211, 29%, 14%);
+    --secondary: hsl(33, 41%, 57%);
+    --tertiairy: hsl(5, 80%, 58%);
+    --accent: hsl(189, 50%, 92%);
+    --hover-color: hsl(0, 0%, 50%);
+
+    /* colors plan-items */
+    --green-one: #95ff85;
+    --green-two: #4edb39;
+    --green-three: #2bb116;
+    --green-four: #0e6600;
+    --green-five: #083d00;
+    --red-one: #ff8585;
+    --red-two: #db3939;
+    --red-three: #b11616;
+    --red-four: #3d0000;
+    --blue-one: hsl(245, 100%, 76%);
+    --blue-two: hsl(243, 69%, 54%);
+    --blue-three: hsl(238, 100%, 20%);
+    --blue-four: hsl(238, 100%, 12%);
+    --purple-one: hsl(300, 78%, 39%);
+    --grey-one: var(--hover-color);
+    --grey-two: hsl(0, 0%, 77%);
+    
+    /* space */
+    --padding-base: 1.5rem;
+    --margin-base: 3rem;
+
+    --spacing-s: 1rem;
+    --spacing-m: 2rem;
+    --spacing-l: 7.6rem;
+}
