@@ -11,7 +11,7 @@ export const jwtAuth = async (req, res, next) => {
     // get user out of the database
     const user = await userRepo.findOne({
       where: { id },
-      relations: ["roles"],
+      relations: ["role"],
     });
 
     user.password = "";
@@ -22,6 +22,6 @@ export const jwtAuth = async (req, res, next) => {
     next();
   } catch (error) {
     res.clearCookie("token");
-    return res.redirect("/login");
+    res.redirect("/login");
   }
 };

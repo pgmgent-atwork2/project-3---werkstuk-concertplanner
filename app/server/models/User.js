@@ -23,17 +23,16 @@ export default new EntitySchema({
     user_meta: {
       target: "UserMeta",
       type: "one-to-one",
-      inverseSide: "users",
+      inverseSide: "user",
       cascade: true,
     },
-    roles: {
+    role: {
       target: "Role",
       type: "many-to-one",
       inverseSide: "user",
       joinColumn: {
         name: "role_id",
       },
-      onDelete: "CASCADE",
     },
     requests: {
       target: "Request",
