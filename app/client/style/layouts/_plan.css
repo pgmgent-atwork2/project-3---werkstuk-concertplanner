@@ -1,3 +1,7 @@
+body {
+  height: max-content;
+}
+
 img {
   display: inline;
   width: 5rem;
@@ -6,7 +10,7 @@ img {
 .flex-podium {
   display: flex;
   justify-content: space-between;
-  margin-top: 3rem;
+  margin-top: 4.5rem;
 }
 
 #Podiumelementen {
@@ -16,9 +20,8 @@ img {
 #canvas {
   border: black 2px solid;
   margin-right: 3rem;
-  height: 80vh;
-  height: 80svh;
   overflow-y: scroll;
+  height: 35rem;
 }
 
 #legend {
