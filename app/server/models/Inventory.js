@@ -16,7 +16,10 @@ export default new EntitySchema({
     label: {
       type: "varchar",
     },
-    size: {
+    width: {
+      type: "int",
+    },
+    height: {
       type: "int",
     },
     color: {
