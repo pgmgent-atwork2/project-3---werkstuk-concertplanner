@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://pixijs.download/release/pixi.js"></script>
-    <link rel="stylesheet" href="assets/style/main.css">
+    <link rel="stylesheet" href="style/main.css">
     <title>Try with Pixi.js</title>
 </head>
 
 <body>
-    <script src="assets/js/dragging.js"></script>
+    <script src="js/dragging.js"></script>
     <div class="flex-podium">
     <ul id="podiumelementen">
         <h3>Podiumelementen</h3>
-        <li><img src="./assets/images/piano.jpg" alt="piano" id="piano"></li>
-        <li><img src="./assets/images/stoel.png" alt="stoel" id="stoel"></li>
-        <li><img src="./assets/images/podium.jpeg" alt="podium"></li>
+        <li><img src="./assets/images/piano.jpg" alt="piano" id="piano" data-stackable="false"></li>
+        <li><img src="./assets/images/stoel.png" alt="stoel" id="stoel" data-stackable="false"></li>
+        <li><img src="./assets/images/podium.jpeg" alt="podium" data-stackable="true"></li>
     </ul>
 
     <div id="canvas">

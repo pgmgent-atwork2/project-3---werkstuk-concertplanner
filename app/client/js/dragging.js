@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const app = new PIXI.Application({
     transparent: true,
-    width: 1000,
-    height: 1000,
+    width: 814.7,
+    height: 814.7,
   });
 
   const blokContainer = document.getElementById("canvas");
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   app.stage.addChild(backgroundSprite);
 
   // Define grid properties
-  const gridSize = 10; // Size of each grid cell
+  const gridSize = 25; // Size of each grid cell
   const gridColor = 0xcccccc; // Color of the grid lines
 
   // Create a graphics object for drawing
@@ -47,29 +47,37 @@ document.addEventListener("DOMContentLoaded", () => {
   function makeBounds(object1, object2) {
     const bounds1 = object1.getChildAt(1).getBounds(); // Exclude the border from bounds
     const bounds2 = object2.getChildAt(1).getBounds(); // Exclude the border from bounds
-  
+
     if (
       bounds1.x < bounds2.x + bounds2.width &&
       bounds1.x + bounds1.width > bounds2.x &&
       bounds1.y < bounds2.y + bounds2.height &&
-      bounds1.y + bounds1.height > bounds2.y
+      bounds1.y + bounds1.height > bounds2.y &&
+      object1.data.stackable === object2.data.stackable
     ) {
       return true;
     }
     return false;
   }
-  
 
   // Function to get the bounds of an item
   function getBounds(item) {
     const position = item.getGlobalPosition();
     const bounds = item.getBounds();
 
+    // Calculate the rotated dimensions
+    const width =
+      bounds.width * Math.abs(Math.cos(item.rotation)) +
+      bounds.height * Math.abs(Math.sin(item.rotation));
+    const height =
+      bounds.height * Math.abs(Math.cos(item.rotation)) +
+      bounds.width * Math.abs(Math.sin(item.rotation));
+
     return {
-      x: position.x,
-      y: position.y,
-      width: bounds.width,
-      height: bounds.height,
+      x: position.x - width / 2,
+      y: position.y - height / 2,
+      width: width,
+      height: height,
     };
   }
 
@@ -77,12 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
   listItems.forEach((item) => {
     // Add event listener to each list item
     item.addEventListener("click", () => {
-      // Get unique info from the element (modify this part according to your needs)
+      // Get unique info from the element
       const uniqueInfo = item.alt;
+      const stackable = item.dataset.stackable === "true"; // Check if the item is stackable
 
       // Create a container for each draggable element
       const container = new PIXI.Container();
       container.position.set(500, 250); // Set the initial position according to your requirements
+      container.eventMode = "auto";
       container.interactive = true;
       container.buttonMode = true;
       container.cursor = "grab";
@@ -112,6 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
         .on("pointerup", onDragEnd)
         .on("pointerupoutside", onDragEnd);
 
+      // Store the stackable attribute in the container's data
+      container.data = {
+        stackable: stackable,
+      };
+
       app.stage.addChild(container);
 
       // Add the container to the selectedItems array
@@ -139,11 +154,11 @@ document.addEventListener("DOMContentLoaded", () => {
         null,
         dragTarget.position
       );
-  
+
       let collisionDetected = false;
       let neighborDetected = false;
       let overlapDetected = false; // New variable to check for overlap
-  
+
       for (let i = 0; i < selectedItems.length; i++) {
         const item = selectedItems[i];
         if (item !== dragTarget && makeBounds(dragTarget, item)) {
@@ -170,11 +185,11 @@ document.addEventListener("DOMContentLoaded", () => {
           break; // Exit the loop once overlap is detected
         }
       }
-  
+
       if (!collisionDetected && !neighborDetected && !overlapDetected) {
         const snapX = Math.round(newPosition.x / gridSize) * gridSize;
         const snapY = Math.round(newPosition.y / gridSize) * gridSize;
-  
+
         dragTarget.position.set(snapX, snapY);
         dragTarget.lastValidPosition.copyFrom(dragTarget.position);
       } else {
@@ -182,10 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-  
-  
-  
-   
 
   function onDragStart(event) {
     this.alpha = 0.5;
@@ -194,21 +205,34 @@ document.addEventListener("DOMContentLoaded", () => {
     app.stage.on("pointermove", onDragMove);
     event.stopPropagation();
 
-    const bounds = getBounds(this);
-    console.log("Bounds:", bounds);
+    // Store a reference to the border graphics object
+    const border = this.getChildAt(0);
+
+    // Add listener for rotation change
+    dragTarget.on("rotationChange", () => {
+      // Update the border dimensions based on the new rotation
+      border.clear();
+      border.lineStyle(2, 0xff0000);
+      border.drawRect(
+        -sprite.width / 2,
+        -sprite.height / 2,
+        sprite.width,
+        sprite.height
+      );
+    });
 
     // Add event listeners for rotation using arrow keys
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);
-  }
+  };
 
   function onKeyDown(event) {
     if (event.key === "ArrowLeft") {
       // Rotate left
-      dragTarget.rotation -= 0.1;
+      dragTarget.rotation -= Math.PI / 4; // Rotate by 45 degrees counterclockwise
     } else if (event.key === "ArrowRight") {
       // Rotate right
-      dragTarget.rotation += 0.1;
+      dragTarget.rotation += Math.PI / 4; // Rotate by 45 degrees clockwise
     }
   }
 
@@ -220,93 +244,100 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-function onDragEnd() {
-  if (dragTarget) {
-    app.stage.off("pointermove", onDragMove);
-    dragTarget.alpha = 1;
+  function onDragEnd() {
+    if (dragTarget) {
+      app.stage.off("pointermove", onDragMove);
+      dragTarget.alpha = 1;
 
-    let collisionDetected = false;
-    let closestItem = null;
-    let closestDistance = Number.MAX_VALUE;
+      let collisionDetected = false;
+      let closestItem = null;
+      let closestDistance = Number.MAX_VALUE;
 
-    for (let i = 0; i < selectedItems.length; i++) {
-      const item = selectedItems[i];
-      if (item !== dragTarget && makeBounds(dragTarget, item)) {
-        collisionDetected = true;
-        const distance = Math.sqrt(
-          Math.pow(dragTarget.position.x - item.position.x, 2) +
-          Math.pow(dragTarget.position.y - item.position.y, 2)
-        );
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestItem = item;
+      for (let i = 0; i < selectedItems.length; i++) {
+        const item = selectedItems[i];
+        // Check if the dragged item can stack on the current item
+        if (
+          item !== dragTarget &&
+          makeBounds(dragTarget, item) &&
+          item.data.stackable
+        ) {
+          collisionDetected = true;
+          const distance = Math.sqrt(
+            Math.pow(dragTarget.position.x - item.position.x, 2) +
+              Math.pow(dragTarget.position.y - item.position.y, 2)
+          );
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestItem = item;
+          }
         }
       }
+
+      if (collisionDetected) {
+        // Calculate the separation vector between the dragged item and the closest item
+        const separationVector = new PIXI.Point(
+          dragTarget.position.x - closestItem.position.x,
+          dragTarget.position.y - closestItem.position.y
+        );
+
+        // Normalize the separation vector
+        const separationLength = Math.sqrt(
+          separationVector.x * separationVector.x +
+            separationVector.y * separationVector.y
+        );
+        separationVector.x /= separationLength;
+        separationVector.y /= separationLength;
+
+        // Calculate the offset to move the rotated item away from the collision
+        const offset = gridSize * 2; // Adjust the offset as needed
+
+        // Calculate the new position by applying the separation vector and offset
+        const newPosition = new PIXI.Point(
+          dragTarget.position.x + separationVector.x * offset,
+          dragTarget.position.y + separationVector.y * offset
+        );
+
+        // Snap the new position to the closest grid position
+        const snapX = Math.round(newPosition.x / gridSize) * gridSize;
+        const snapY = Math.round(newPosition.y / gridSize) * gridSize;
+
+        // Adjust the snap position based on the rotated dimensions of the items
+        const dragBounds = getBounds(dragTarget);
+        const closestBounds = getBounds(closestItem);
+        const adjustedSnapX =
+          snapX + (closestBounds.width - dragBounds.width) / 2;
+        const adjustedSnapY =
+          snapY + (closestBounds.height - dragBounds.height) / 2;
+
+        // Set the new position for the rotated item
+        dragTarget.position.set(adjustedSnapX, adjustedSnapY);
+
+        // Update the last valid position
+        dragTarget.lastValidPosition.copyFrom(dragTarget.position);
+      } else {
+        // Calculate the closest grid position
+        const snapX = Math.round(dragTarget.position.x / gridSize) * gridSize;
+        const snapY = Math.round(dragTarget.position.y / gridSize) * gridSize;
+
+        // Snap to the closest grid position
+        dragTarget.position.set(snapX, snapY);
+
+        // Update the last valid position
+        dragTarget.lastValidPosition.copyFrom(dragTarget.position);
+        if (!dragTarget.data.stackable) {
+          // Remove the dragged item from the stage
+          app.stage.removeChild(dragTarget);
+
+          // Add the dragged item back to the stage at the end
+          app.stage.addChild(dragTarget);
+        }
+      }
+
+      dragTarget = null;
+
+      // Remove the rotation event listeners
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("keyup", onKeyUp);
     }
-
-    if (collisionDetected) {
-      console.log("Collision detected!");
-      console.log("Closest item:", closestItem);
-      console.log("Closest distance:", closestDistance);
-
-      // Calculate the separation vector between the dragged item and the closest item
-      const separationVector = new PIXI.Point(
-        dragTarget.position.x - closestItem.position.x,
-        dragTarget.position.y - closestItem.position.y
-      );
-
-      // Normalize the separation vector
-      const separationLength = Math.sqrt(
-        separationVector.x * separationVector.x + separationVector.y * separationVector.y
-      );
-      separationVector.x /= separationLength;
-      separationVector.y /= separationLength;
-
-      // Calculate the offset to move the rotated item away from the collision
-      const offset = gridSize * 2; // Adjust the offset as needed
-
-      // Calculate the new position by applying the separation vector and offset
-      const newPosition = new PIXI.Point(
-        dragTarget.position.x + separationVector.x * offset,
-        dragTarget.position.y + separationVector.y * offset
-      );
-
-      // Snap the new position to the closest grid position
-      const snapX = Math.round(newPosition.x / gridSize) * gridSize;
-      const snapY = Math.round(newPosition.y / gridSize) * gridSize;
-
-      // Adjust the snap position based on the rotated dimensions of the items
-      const dragBounds = getBounds(dragTarget);
-      const closestBounds = getBounds(closestItem);
-      const adjustedSnapX = snapX + (closestBounds.width - dragBounds.width) / 2;
-      const adjustedSnapY = snapY + (closestBounds.height - dragBounds.height) / 2;
-
-      // Set the new position for the rotated item
-      dragTarget.position.set(adjustedSnapX, adjustedSnapY);
-
-      // Update the last valid position
-      dragTarget.lastValidPosition.copyFrom(dragTarget.position);
-    } else {
-      console.log("No collision detected!");
-
-      // Calculate the closest grid position
-      const snapX = Math.round(dragTarget.position.x / gridSize) * gridSize;
-      const snapY = Math.round(dragTarget.position.y / gridSize) * gridSize;
-
-      // Snap to the closest grid position
-      dragTarget.position.set(snapX, snapY);
-
-      // Update the last valid position
-      dragTarget.lastValidPosition.copyFrom(dragTarget.position);
-    }
-
-    // Remove rotation event listeners
-    window.removeEventListener("keydown", onKeyDown);
-    window.removeEventListener("keyup", onKeyUp);
-
-    dragTarget = null;
   }
-}
-
-
 });
