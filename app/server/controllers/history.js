@@ -1,4 +1,4 @@
-export const getHistory = (req, res, next) => {
+export const getHistoryPage = (req, res, next) => {
   try {
     res.render("user/history", {
       user: req.user,

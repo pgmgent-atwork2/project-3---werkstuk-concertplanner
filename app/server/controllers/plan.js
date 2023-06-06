@@ -1,4 +1,4 @@
-export const getPlan = (req, res, next) => {
+export const getPlanPage = (req, res, next) => {
   try {
     res.render("plan", {
       user: req.user,

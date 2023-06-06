@@ -24,14 +24,11 @@ import {
   getCurrentUser,
   editCurrentUser,
 } from "./controllers/api/user.js";
-import {
-  // request,
-  // postRequest,
-  getUserDetails
-} from "./controllers/request.js";
-import { getInventory } from "./controllers/inventory.js";
-import { getPlan } from "./controllers/plan.js";
-import { getHistory } from "./controllers/history.js";
+import { getUserDetailPage } from "./controllers/user-detail.js";
+import { getRequestPage } from "./controllers/request.js";
+import { getInventoryPage } from "./controllers/inventory.js";
+import { getPlanPage } from "./controllers/plan.js";
+import { getHistoryPage } from "./controllers/history.js";
 
 import registerAuth from "./middleware/validation/registerAuth.js";
 import loginAuth from "./middleware/validation/loginAuth.js";
@@ -68,13 +65,17 @@ app.post("/logout", logout);
 
 app.get("/api/gebruikers", getAllUsers);
 
-app.get("/beschikbaar-materiaal", jwtAuth, getInventory);
+app.get("/api/detail-gebruiker/:id", jwtAuth, getUserDetailPage);
+// app.post("/api/detail-gebruiker/:id", jwtAuth, editCurrentUser);
+// app.put("/api/detail-gebruiker/:id", editCurrentUser);
 
-app.get("/plan-opstellen", jwtAuth, getPlan);
+app.get("/api/beschikbaar-materiaal", jwtAuth, getInventoryPage);
 
-app.get("/geschiedenis", jwtAuth, getHistory);
+app.get("/api/plan-opstellen", jwtAuth, getPlanPage);
 
-app.get("/vraag-aan", jwtAuth, getUserDetails);
+app.get("/api/geschiedenis", jwtAuth, getHistoryPage);
+
+app.get("/api/vraag-aan", jwtAuth, getRequestPage);
 // app.post("/vraag-aan", jwtAuth, postRequest, request);
 
 /* Start the server */

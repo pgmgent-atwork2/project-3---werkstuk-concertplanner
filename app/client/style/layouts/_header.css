@@ -20,7 +20,7 @@
         }
     }
 
-    & a {
+    & a:not(.user-icon) {
         transition: all .2s ease;
         background-color: var(--bright);
     }
@@ -35,5 +35,17 @@
         top: calc(var(--spacing-l) * -2);
         right: calc(var(--spacing-l) * -1);
         z-index: -1;
+    }
+
+    & .user-icon {
+        transition: all .4s ease;
+        position: fixed;
+        bottom: var(--spacing-m);
+        right: var(--spacing-m);
+
+        &.user-icon:hover {
+            filter: brightness(1.5);
+            transform: scale(1.1);
+        }
     }
 }

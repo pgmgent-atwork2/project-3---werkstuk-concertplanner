@@ -5,7 +5,7 @@ import DataSource from "../lib/DataSource.js";
 const userRepo = await DataSource.getRepository("User");
 const requestRepo = await DataSource.getRepository("Request");
 
-export const getUserDetails = async (req, res) => {
+export const getRequestPage = async (req, res) => {
   try {
     res.render("user/request", {
       user: req.user,

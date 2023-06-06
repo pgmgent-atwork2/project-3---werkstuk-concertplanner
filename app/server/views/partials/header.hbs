@@ -14,25 +14,25 @@ compare string handlebars helper --}}
     
         <ul class="nav__list">
             <li>
-                <a href="/beschikbaar-materiaal">
+                <a href="/api/beschikbaar-materiaal">
                     Beschikbaar materiaal
                 </a>
             </li>
 
             <li>
-                <a href="/plan-opstellen">
+                <a href="/api/plan-opstellen">
                     Plan opstellen
                 </a>
             </li>
 
             <li>
-                <a href="/geschiedenis">
+                <a href="/api/geschiedenis">
                     Geschiedenis
                 </a>
             </li>
 
             <li>
-                <a href="/vraag-aan">
+                <a href="/api/vraag-aan">
                     Vraag aan
                 </a>
             </li>
@@ -41,15 +41,17 @@ compare string handlebars helper --}}
 
     <svg class="circle-shape" xmlns="http://www.w3.org/2000/svg" width="599" height="599" fill="none"><circle cx="299.5" cy="299.5" r="298.5" stroke="var(--secondary)" stroke-width="2"/></svg>
 
-    <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="none">
-        <circle cx="37.5" cy="37.5" r="37.5" fill="var(--tertiairy)"/>
+    <a class="user-icon" href="/api/detail-gebruiker/{{user.id}}">
+        <svg viewBox="0 0 75 75" xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="none">
+            <circle cx="37.5" cy="37.5" r="37.5" fill="#E94A3D"/>
+            
+            <mask id="a" width="75" height="75" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha">
 
-        <mask id="a" width="75" height="75" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha">
-            <circle cx="37.5" cy="37.5" r="37.5" fill="#D9D9D9"/>
-        </mask>
-
-        <g mask="url(#a)">
-            <path fill="#fff" fill-rule="evenodd" d="M41.858 40.848a11.032 11.032 0 0 0 6.671-10.135c0-6.092-4.938-11.03-11.029-11.03s-11.03 4.938-11.03 11.03c0 4.59 2.804 8.524 6.792 10.185-8.37 1.988-14.597 9.513-14.597 18.491v19.005h38.01V59.389c0-9.057-6.336-16.634-14.817-18.541Z" clip-rule="evenodd"/>
-        </g>
-    </svg>
+            <circle cx="37.5" cy="37.5" r="37.5" fill="#D9D9D9"/></mask>
+            
+            <g mask="url(#a)">
+                <path fill="#fff" fill-rule="evenodd" d="M41.858 40.847a11.032 11.032 0 0 0 6.672-10.135c0-6.09-4.939-11.029-11.03-11.029-6.091 0-11.03 4.938-11.03 11.03 0 4.59 2.804 8.524 6.792 10.185-8.37 1.988-14.597 9.512-14.597 18.491v19.005h38.01V59.389c0-9.057-6.336-16.634-14.817-18.542Z" clip-rule="evenodd"/>
+            </g>
+        </svg>
+    </a>
 </header>
