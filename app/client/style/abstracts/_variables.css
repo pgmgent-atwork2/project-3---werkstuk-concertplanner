@@ -22,11 +22,11 @@
     --red-two: #db3939;
     --red-three: #b11616;
     --red-four: #3d0000;
-    --blue-one: hsl(245, 100%, 76%);
+    --blue-one: #8f85ff;
     --blue-two: hsl(243, 69%, 54%);
     --blue-three: hsl(238, 100%, 20%);
     --blue-four: hsl(238, 100%, 12%);
-    --purple-one: hsl(300, 78%, 39%);
+    --purple-one: #b116b1;
     --grey-one: var(--hover-color);
     --grey-two: hsl(0, 0%, 77%);
     
