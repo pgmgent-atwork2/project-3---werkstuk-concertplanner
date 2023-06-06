@@ -11,14 +11,37 @@ export const jwtAuth = async (req, res, next) => {
     // get user out of the database
     const user = await userRepo.findOne({
       where: { id },
-      relations: ["role"],
+      relations: ["user_meta", "role"],
     });
 
     user.password = "";
 
     // check if user exists
     req.user = user;
+    next();
+  } catch (error) {
+    res.clearCookie("token");
+    res.redirect("/login");
+  }
+};
 
+export const jwtAPIAuth = async (req, res, next) => {
+  console.log(req.headers);
+
+  try {
+    const userRepo = DataSource.getRepository("User");
+    const { id } = jwt.verify(token, process.env.TOKEN_SALT);
+
+    // get user out of the database
+    const user = await userRepo.findOne({
+      where: { id },
+      relations: ["user_meta", "role"],
+    });
+
+    user.password = "";
+
+    // check if user exists
+    req.user = user;
     next();
   } catch (error) {
     res.clearCookie("token");

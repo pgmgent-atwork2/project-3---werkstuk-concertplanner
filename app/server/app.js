@@ -20,9 +20,14 @@ import {
   logout,
 } from "./controllers/authentication.js";
 import {
-  requesting,
-  postRequest,
+  getAllUsers,
   getCurrentUser,
+  editCurrentUser,
+} from "./controllers/api/user.js";
+import {
+  // request,
+  // postRequest,
+  getUserDetails
 } from "./controllers/request.js";
 import { getInventory } from "./controllers/inventory.js";
 import { getPlan } from "./controllers/plan.js";
@@ -30,7 +35,7 @@ import { getHistory } from "./controllers/history.js";
 
 import registerAuth from "./middleware/validation/registerAuth.js";
 import loginAuth from "./middleware/validation/loginAuth.js";
-import { jwtAuth } from "./middleware/jwtAuth.js";
+import { jwtAPIAuth, jwtAuth } from "./middleware/jwtAuth.js";
 
 /* Setup express server */
 const app = express();
@@ -61,14 +66,16 @@ app.post("/login", loginAuth, postLogin, login);
 app.post("/register", registerAuth, postRegister, register);
 app.post("/logout", logout);
 
+app.get("/api/gebruikers", getAllUsers);
+
 app.get("/beschikbaar-materiaal", jwtAuth, getInventory);
 
 app.get("/plan-opstellen", jwtAuth, getPlan);
 
 app.get("/geschiedenis", jwtAuth, getHistory);
 
-app.get("/vraag-aan", jwtAuth, getCurrentUser);
-app.post("/vraag-aan", jwtAuth, postRequest, requesting);
+app.get("/vraag-aan", jwtAuth, getUserDetails);
+// app.post("/vraag-aan", jwtAuth, postRequest, request);
 
 /* Start the server */
 if (process.env.NODE_ENV !== "test") {
