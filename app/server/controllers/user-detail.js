@@ -11,7 +11,7 @@ export const getUserDetailPage = async (req, res) => {
       relations: ["user_meta", "role"],
     });
 
-    console.log(user);
+    // console.log(user);
 
     res.render("detail", {
       user: req.user,

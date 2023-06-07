@@ -21,18 +21,26 @@ import {
 } from "./controllers/authentication.js";
 import {
   getAllUsers,
-  getCurrentUser,
-  editCurrentUser,
+  getSpecificUser,
+  editSpecificUser,
+  deleteSpecificUser,
 } from "./controllers/api/user.js";
 import { getUserDetailPage } from "./controllers/user-detail.js";
 import { getRequestPage } from "./controllers/request.js";
+import {
+  getInventory,
+  getInventoryItem,
+  addInventoryItem,
+  editInventoryItem,
+  deleteInventoryItem,
+} from "./controllers/api/inventory.js";
 import { getInventoryPage } from "./controllers/inventory.js";
 import { getPlanPage } from "./controllers/plan.js";
 import { getHistoryPage } from "./controllers/history.js";
 
 import registerAuth from "./middleware/validation/registerAuth.js";
 import loginAuth from "./middleware/validation/loginAuth.js";
-import { jwtAPIAuth, jwtAuth } from "./middleware/jwtAuth.js";
+import { jwtAuth } from "./middleware/jwtAuth.js";
 
 /* Setup express server */
 const app = express();
@@ -54,7 +62,7 @@ app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 app.set("views", VIEWS_PATH);
 
-/* App routing */
+/* APP routing */
 app.get("/", jwtAuth, home);
 
 app.get("/login", login);
@@ -63,20 +71,34 @@ app.post("/login", loginAuth, postLogin, login);
 app.post("/register", registerAuth, postRegister, register);
 app.post("/logout", logout);
 
+app.get("/detail-gebruiker/:id", jwtAuth, getUserDetailPage);
+
+app.get("/beschikbaar-materiaal", jwtAuth, getInventoryPage);
+
+app.get("/plan-opstellen", jwtAuth, getPlanPage);
+
+app.get("/geschiedenis", jwtAuth, getHistoryPage);
+
+app.get("/vraag-aan", jwtAuth, getRequestPage);
+
+/* API routing */
 app.get("/api/gebruikers", getAllUsers);
+app.get("/api/gebruikers/:id", getSpecificUser);
+// Still an error with the new hashed password, salt and hash error
+app.put("/api/gebruikers/:id", editSpecificUser);
+app.delete("/api/gebruikers/:id", deleteSpecificUser);
 
-app.get("/api/detail-gebruiker/:id", jwtAuth, getUserDetailPage);
-// app.post("/api/detail-gebruiker/:id", jwtAuth, editCurrentUser);
-// app.put("/api/detail-gebruiker/:id", editCurrentUser);
+app.get("/api/inventaris", getInventory);
+app.get("/api/inventaris/:id", getInventoryItem);
+app.post("/api/inventaris", addInventoryItem);
+app.put("/api/inventaris/:id", editInventoryItem);
+app.delete("/api/inventaris/:id", deleteInventoryItem);
 
-app.get("/api/beschikbaar-materiaal", jwtAuth, getInventoryPage);
+// plan
 
-app.get("/api/plan-opstellen", jwtAuth, getPlanPage);
+// history
 
-app.get("/api/geschiedenis", jwtAuth, getHistoryPage);
-
-app.get("/api/vraag-aan", jwtAuth, getRequestPage);
-// app.post("/vraag-aan", jwtAuth, postRequest, request);
+// request
 
 /* Start the server */
 if (process.env.NODE_ENV !== "test") {
