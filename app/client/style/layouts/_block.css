@@ -22,6 +22,31 @@
             right: calc(var(--spacing-l) * -1);
         }
     }
+
+    &.block--settings {
+        gap: var(--spacing-l);
+        margin-bottom: var(--spacing-l);
+
+        & .detail-forms {
+            position: relative;
+
+            & .logout {
+                position: absolute;
+                bottom: .9rem;
+                right: 0;
+            }
+        }
+
+        & fieldset {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        & div {
+            width: 45%;
+            flex-grow: 1;
+        }
+    }
 }
 
 .block__text {

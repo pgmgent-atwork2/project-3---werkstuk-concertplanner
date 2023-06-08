@@ -25,7 +25,7 @@ import {
   editSpecificUser,
   deleteSpecificUser,
 } from "./controllers/api/user.js";
-import { getUserDetailPage } from "./controllers/user-detail.js";
+import { getUserDetailPage, editUserInfo } from "./controllers/user-detail.js";
 import {
   getAllRequests,
   getSpecificRequest,
@@ -104,7 +104,7 @@ app.get("/vraag-aan", jwtAuth, getRequestPage);
 app.get("/api/gebruikers", getAllUsers);
 app.get("/api/gebruikers/:id", getSpecificUser);
 app.put("/api/gebruikers/:id", editSpecificUser); // Thunder Client
-app.post("/aanpassen-gebruikers/:id", editSpecificUser); // Form Input
+app.post("/gebruikers/:id", jwtAuth, editUserInfo); // Form Input
 app.delete("/api/gebruikers/:id", deleteSpecificUser);
 
 app.get("/api/collecties", getAllCollections);

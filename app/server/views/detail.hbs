@@ -1,5 +1,5 @@
-<section class="container block">
-    <div class="intro">
+<section class="container">
+    <div class="block intro">
         <h1>
             {{user.user_meta.name}}
         </h1>
@@ -9,22 +9,53 @@
         </span>
     </div>
 
-    <div>
-        <img src="/assets/images/user-big.png" alt="User icon">
+    <div class="row block block--settings">
+        <img class="user-icon-big" src="/assets/images/user-big.png" alt="User icon">
 
         <div class="detail-forms">
-            <form action="" method="post">
-                <label for=""></label>
-                <input type="text">
-                
-                <button class="btn btn--secondary" type="submit">
+            <form class="block--form" action="/gebruikers/{{user.id}}">
+                <fieldset class="text--big">
+                    <div class="form-item">
+                        <label for="name">
+                            Naam
+                        </label>
+
+                        <input name="name" type="text" value="{{user.user_meta.name}}">
+                    </div>
+
+                    <div class="form-item">
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input name="email" type="text" value="{{user.email}}">
+                    </div>
+
+                    <div class="form-item">
+                        <label for="phone">
+                            Telefoon / GSM
+                        </label>
+
+                        <input name="phone" type="text" value="&#43;{{user.user_meta.phone}}">
+                    </div>
+
+                    <div class="form-item">
+                        <label for="password">
+                            Wachtwoord
+                        </label>
+
+                        <input name="password" type="text" value="Wachtwoord">
+                    </div>
+                </fieldset>
+
+                <button class="btn btn--secondary" type="submit" formmethod="post">
                     Bewerken
                 </button>
             </form>
 
-            <form action="/logout" method="post">
+            <form class="logout" action="/logout" method="post">
                 <button type="submit" class="btn btn--tertiairy">
-                    Logout
+                    Uitloggen
                 </button>
             </form>
         </div>

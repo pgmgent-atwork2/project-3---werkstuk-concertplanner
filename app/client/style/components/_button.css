@@ -1,4 +1,5 @@
 .btn {
+    width: 11.8rem;
     color: var(--bright);
     background-color: var(--primary);
     padding: calc(var(--spacing-s) / 1.5) var(--spacing-s);
