@@ -85,8 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
   listItems.forEach((item) => {
     // Add event listener to each list item
     item.addEventListener("click", () => {
-      // Get unique info from the element
-      const uniqueInfo = item.alt;
       const stackable = item.dataset.stackable === "true"; // Check if the item is stackable
 
       // Create a container for each draggable element
@@ -203,22 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
     dragTarget.lastValidPosition = dragTarget.position.clone(); // Store the initial position
     app.stage.on("pointermove", onDragMove);
     event.stopPropagation();
-
-    // Store a reference to the border graphics object
-    const border = this.getChildAt(0);
-
-    // Add listener for rotation change
-    dragTarget.on("rotationChange", () => {
-      // Update the border dimensions based on the new rotation
-      border.clear();
-      border.lineStyle(2, 0xff0000);
-      border.drawRect(
-        -sprite.width / 2,
-        -sprite.height / 2,
-        sprite.width,
-        sprite.height
-      );
-    });
 
     // Add event listeners for rotation using arrow keys
     window.addEventListener("keydown", onKeyDown);
