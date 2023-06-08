@@ -4,5 +4,6 @@ import Role from "./Role.js";
 import Inventory from "./Inventory.js";
 import Request from "./Request.js";
 import Plan from "./Plan.js";
+import Collection from "./Collection.js";
 
-export default [User, UserMeta, Role, Inventory, Request, Plan];
+export default [User, UserMeta, Role, Inventory, Request, Plan, Collection];

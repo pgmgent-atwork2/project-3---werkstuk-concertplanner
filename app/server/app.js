@@ -96,8 +96,8 @@ app.get("/vraag-aan", jwtAuth, getRequestPage);
 /* API routing */
 app.get("/api/gebruikers", getAllUsers);
 app.get("/api/gebruikers/:id", getSpecificUser);
-// Still an error with the new hashed password, salt and hash error
-app.put("/api/gebruikers/:id", editSpecificUser);
+app.put("/api/gebruikers/:id", editSpecificUser); // Thunder Client
+app.post("/aanpassen-gebruikers/:id", editSpecificUser); // Form Input
 app.delete("/api/gebruikers/:id", deleteSpecificUser);
 
 app.get("/api/inventaris", getInventory);

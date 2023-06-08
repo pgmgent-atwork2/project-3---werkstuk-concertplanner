@@ -29,4 +29,15 @@ export default new EntitySchema({
       type: "int",
     },
   },
+  relations: {
+    collection: {
+      target: "Collection",
+      type: "many-to-one",
+      joinColumn: {
+        name: "collection_id",
+      },
+      onDelete: "CASCADE",
+      inverseSide: "inventory",
+    },
+  },
 });

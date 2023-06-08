@@ -49,7 +49,7 @@ export const editSpecificUser = async (req, res) => {
       if (req.body.password) {
         req.body.password = bcrypt.hashSync(req.body.password, 10);
       }
-      console.log("req.body: ", req.body);
+
       const newUser = {
         ...user,
         ...req.body,
