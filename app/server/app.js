@@ -26,6 +26,12 @@ import {
   deleteSpecificUser,
 } from "./controllers/api/user.js";
 import { getUserDetailPage } from "./controllers/user-detail.js";
+import {
+  getAllRequests,
+  getSpecificRequest,
+  addRequest,
+  deleteRequest,
+} from "./controllers/api/request.js";
 import { getRequestPage } from "./controllers/request.js";
 import {
   getInventory,
@@ -35,6 +41,12 @@ import {
   deleteInventoryItem,
 } from "./controllers/api/inventory.js";
 import { getInventoryPage } from "./controllers/inventory.js";
+import {
+  getAllPlans,
+  getSpecificPlan,
+  addPlan,
+  deletePlan,
+} from "./controllers/api/plan.js";
 import { getPlanPage } from "./controllers/plan.js";
 import { getHistoryPage } from "./controllers/history.js";
 
@@ -94,11 +106,15 @@ app.post("/api/inventaris", addInventoryItem);
 app.put("/api/inventaris/:id", editInventoryItem);
 app.delete("/api/inventaris/:id", deleteInventoryItem);
 
-// plan
+app.get("/api/plannen", getAllPlans);
+app.get("/api/plannen/:id", getSpecificPlan);
+app.post("/api/plannen", addPlan);
+app.delete("/api/plannen/:id", deletePlan);
 
-// history
-
-// request
+app.get("/api/aanvragen", getAllRequests);
+app.get("/api/aanvragen/:id", getSpecificRequest);
+app.post("/api/aanvragen", addRequest);
+app.delete("/api/aanvragen/:id", deleteRequest);
 
 /* Start the server */
 if (process.env.NODE_ENV !== "test") {
