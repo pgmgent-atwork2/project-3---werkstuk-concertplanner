@@ -1,0 +1,29 @@
+<section>
+    <div class="intro">
+        <h1>
+            {{user.user_meta.name}}
+        </h1>
+
+        <span>
+            Hier vind u alle details over deze specifieke groep.
+        </span>
+    </div>
+
+    <div>
+        <img src="/assets/images/user-big.png" alt="User icon">
+
+        <div class="detail-forms">
+            <form action="" method="post">
+                <button class="btn btn--secondary" type="submit">
+                    Bewerken
+                </button>
+            </form>
+
+            <form action="/logout" method="post">
+                <button type="submit" class="btn btn--tertiairy">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
