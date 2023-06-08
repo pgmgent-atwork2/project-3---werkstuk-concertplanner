@@ -92,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // Create a container for each draggable element
       const container = new PIXI.Container();
       container.position.set(500, 250); // Set the initial position according to your requirements
-      container.eventMode = "auto";
       container.interactive = true;
       container.buttonMode = true;
       container.cursor = "grab";
