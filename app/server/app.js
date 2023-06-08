@@ -34,6 +34,13 @@ import {
 } from "./controllers/api/request.js";
 import { getRequestPage } from "./controllers/request.js";
 import {
+  getAllCollections,
+  getSpecificCollection,
+  addCollection,
+  editCollection,
+  deleteCollection,
+} from "./controllers/api/collection.js";
+import {
   getInventory,
   getInventoryItem,
   addInventoryItem,
@@ -99,6 +106,12 @@ app.get("/api/gebruikers/:id", getSpecificUser);
 app.put("/api/gebruikers/:id", editSpecificUser); // Thunder Client
 app.post("/aanpassen-gebruikers/:id", editSpecificUser); // Form Input
 app.delete("/api/gebruikers/:id", deleteSpecificUser);
+
+app.get("/api/collecties", getAllCollections);
+app.get("/api/collecties/:id", getSpecificCollection);
+app.post("/api/collecties", addCollection);
+app.put("/api/collecties/:id", editCollection);
+app.delete("/api/collecties/:id", deleteCollection);
 
 app.get("/api/inventaris", getInventory);
 app.get("/api/inventaris/:id", getInventoryItem);
