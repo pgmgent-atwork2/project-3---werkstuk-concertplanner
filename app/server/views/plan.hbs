@@ -1,5 +1,18 @@
 <h1>Inventaris</h1>
 <input type="Zoeken">
-<div>
-  {{#each collection }}
+<div class="inventaris">
+  {{#each collections}}
+  <div>
+    <h2>{{this.label}}</h2>
+    <ul>
+        {{#each inventory}} 
+      <li>
+        <span>{{this}}</span>
+        <span>{{this}}</span>
+        <span>{{this}}</span>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/each}}
 </div>

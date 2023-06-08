@@ -6,14 +6,13 @@ const collectionRepo = DataSource.getRepository("Collection");
 
 export const getPlanPage = async (req, res, next) => {
   try {
-       
-    const getInventory = await inventoryRepo.find(); 
+    const getInventory = await inventoryRepo.find();
     const getCollections = await collectionRepo.find();
-    console.log(getInventory);
-    console.log(getCollections);
 
     res.render("plan", {
       user: req.user,
+      inventory: getInventory,
+      collections: getCollections,
     });
   } catch (error) {
     console.log(error);
