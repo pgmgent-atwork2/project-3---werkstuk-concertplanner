@@ -46,12 +46,13 @@ export const editSpecificUser = async (req, res) => {
     });
 
     if (user) {
-      const protectedPassword = bcrypt.hashSync(req.body.password, 10);
-      console.log(protectedPassword);
+      if (req.body.password) {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+      }
+      console.log("req.body: ", req.body);
       const newUser = {
         ...user,
         ...req.body,
-        password: protectedPassword,
       };
 
       await userRepo.save(newUser);
