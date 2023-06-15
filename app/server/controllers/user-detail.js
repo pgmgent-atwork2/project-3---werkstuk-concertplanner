@@ -36,32 +36,23 @@ export const editUserInfo = async (req, res) => {
     });
 
     if (user) {
-      if (req.body.password) {
-        req.body.password = bcrypt.hashSync(req.body.password, 10);
+      const userMeta = await userMetaRepo.findOne({
+        where: {
+          user: { id },
+        },
+      });
 
-        const newUser = {
-          ...user,
+      if (userMeta) {
+        const newUserMeta = {
+          ...userMeta,
           ...req.body,
         };
 
-        await userRepo.save(newUser);
+        await userMetaRepo.save(newUserMeta);
 
-        const userMeta = await userMetaRepo.findOne({
-          where: {
-            user: { id },
-          },
-        });
-
-        if (userMeta) {
-          const newUserMeta = {
-            ...userMeta,
-            ...req.body,
-          };
-
-          await userMetaRepo.save(newUserMeta);
-
-          res.redirect(`/detail-gebruiker/${id}`);
-        }
+        res.redirect(`/detail-gebruiker/${id}`);
+        //   }
+        // }
       }
     }
   } catch (error) {
