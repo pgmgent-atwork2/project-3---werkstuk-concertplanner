@@ -7,6 +7,42 @@
         Beschikbaar
     </h2>
 
+    <div>
+        <ul>
+            {{#each inventory}}
+                {{!-- {{#if}} --}}
+                    <li>
+                        <a href="#{{this.collection.label}}">
+                            {{this.collection.label}}
+                        </a>
+                    </li>
+                {{!-- {{/if}} --}}
+            {{/each}}
+        </ul>
+
+        <a href="/plan-opstellen" class="btn btn--tertiairy">
+            Plan opstellen
+        </a>
+    </div>
+
+    <section>
+        {{#each collections}}
+            <h3>
+                {{this.label}}
+            </h3>
+
+            <ul>
+                {{#each inventory}}
+                    {{#if (eq this.inventory.collection.id this.collection.id)}}
+                        <li>
+                            {{this.label}}
+                        </li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        {{/each}}
+    </section>
+
     <a href="link to ID">
         Beschikbare elementen uit database
     </a>
@@ -27,7 +63,7 @@
                 Ziet u een bepaald instrument niet staan of zijn er niet genoeg van een specifiek element? <span class="active span--inline">Aarzel dan niet om ons te contacteren!</span> Wij kunnen u misschien helpen met uw probleem.
             </p>
 
-            <a href="#" class="btn btn--tertiairy">
+            <a href="/vraag-aan" class="btn btn--tertiairy">
                 Ga naar aanvragen
             </a>
         </div>

@@ -23,16 +23,19 @@
         }
     }
 
+    &.block--bottom {
+        margin-bottom: var(--spacing-l);
+    }
+
     &.block--settings {
         gap: var(--spacing-l);
-        margin-bottom: var(--spacing-l);
 
         & .detail-forms {
             position: relative;
 
             & .logout {
                 position: absolute;
-                bottom: 1.3rem;
+                bottom: 1.9rem;
                 right: 0;
             }
         }
@@ -47,8 +50,4 @@
             flex-grow: 1;
         }
     }
-}
-
-.block__text {
-    max-width: 50%;
 }

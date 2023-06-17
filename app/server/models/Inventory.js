@@ -10,9 +10,6 @@ export default new EntitySchema({
       type: "int",
       generated: true,
     },
-    collection: {
-      type: "varchar",
-    },
     label: {
       type: "varchar",
     },

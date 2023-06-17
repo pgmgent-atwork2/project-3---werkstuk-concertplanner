@@ -1,5 +1,5 @@
 <div class="container">
-    <section class="block block__text">
+    <section class="block intro block__text">
         <h1 class="title--second">
             Vraag aan
         </h1>
@@ -9,17 +9,29 @@
         </p>
     </section>
 
-    <section>
-        <form action="/aanvragen" method="post">
-            <fieldset>
+    <section class="block block--bottom">
+        <form class="full-form" action="/aanvragen">
+            <fieldset class="text text--big">
                 <input type="hidden" value="{{user.id}}" name="userId">
 
-                <input type="text" name="subject">
+                <div>
+                    <label for="subject">
+                        Onderwerp
+                    </label>
 
-                <input type="text" name="description">
+                    <input required type="text" name="subject">
+                </div>
+
+                <div>
+                    <label for="description">
+                        Beschrijving
+                    </label>
+
+                    <input required type="text" name="description" class="big-input">
+                </div>
             </fieldset>
 
-            <button type="submit">
+            <button class="btn btn-secondary" type="submit" formmethod="post">
                 Verzenden
             </button>
         </form>

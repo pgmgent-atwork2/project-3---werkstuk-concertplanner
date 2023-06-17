@@ -32,7 +32,7 @@ import {
   addRequest,
   deleteRequest,
 } from "./controllers/api/request.js";
-import { getRequestPage } from "./controllers/request.js";
+import { getRequestPage, postRequest } from "./controllers/request.js";
 import {
   getAllCollections,
   getSpecificCollection,
@@ -127,6 +127,7 @@ app.delete("/api/plannen/:id", deletePlan);
 app.get("/api/aanvragen", getAllRequests);
 app.get("/api/aanvragen/:id", getSpecificRequest);
 app.post("/api/aanvragen", addRequest);
+app.post("/aanvragen", jwtAuth, postRequest);
 app.delete("/api/aanvragen/:id", deleteRequest);
 
 /* Start the server */

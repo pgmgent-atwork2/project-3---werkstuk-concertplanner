@@ -14,8 +14,6 @@ export const getUserDetailPage = async (req, res) => {
       relations: ["user_meta"],
     });
 
-    // console.log(getLoggedInUser);
-
     res.render("detail", {
       user: getLoggedInUser,
     });
@@ -51,8 +49,6 @@ export const editUserInfo = async (req, res) => {
         await userMetaRepo.save(newUserMeta);
 
         res.redirect(`/detail-gebruiker/${id}`);
-        //   }
-        // }
       }
     }
   } catch (error) {

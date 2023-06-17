@@ -91,5 +91,6 @@ a {
 }
 
 .intro {
+	max-width: 50%;
     margin-bottom: var(--margin-base);
 }

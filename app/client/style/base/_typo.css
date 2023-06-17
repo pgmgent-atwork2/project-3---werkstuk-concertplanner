@@ -18,9 +18,13 @@ a {
     margin-bottom: calc(var(--margin-base) / 2);
 }
 
-.text--big {
-    font-size: 1.3rem;
-    line-height: 1.4;
+.text {
+    /* FONT-FAMILY, ... */
+
+    &.text--big {
+        font-size: 1.3rem;
+        line-height: 1.4;
+    }
 }
 
 span,
