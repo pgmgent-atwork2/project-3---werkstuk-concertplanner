@@ -1,22 +1,24 @@
-.block--image {
+.block-image {
     background-color: var(--primary);
     width: 50%;
     height: 100vh;
     display: flex;
 
-    & .logo--white {
+    & .logo-white {
         align-self: center;
         transform: scale(1.2) translateX(-15%);
+        position: relative;
+        z-index: 50;
     }
 }
 
-.page--half {
+.page-half {
     width: 50%;
     position: relative;
     display: flex;
     justify-content: center;
 
-    & .page--half-form {
+    & .page-half__form {
         width: 25rem;
         position: absolute;
         align-self: center;

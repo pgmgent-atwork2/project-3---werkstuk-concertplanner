@@ -14,7 +14,15 @@ export default new EntitySchema({
       type: "varchar",
       nullable: true,
     },
-    date: {
+    concert_date: {
+      type: "text",
+      nullable: true,
+    },
+    creation_date: {
+      type: "text",
+      nullable: true,
+    },
+    pdf_image: {
       type: "text",
       nullable: true,
     },

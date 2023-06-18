@@ -40,5 +40,11 @@ export default new EntitySchema({
       inverseSide: "user",
       cascade: true,
     },
+    plans: {
+      target: "Plan",
+      type: "one-to-many",
+      inverseSide: "user",
+      cascade: true,
+    },
   },
 });
