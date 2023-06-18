@@ -1,12 +1,8 @@
 .row {
     display: flex;
+}
 
-    &.row--between {
-        justify-content: space-between;
-
-        & strong {
-            background-color: var(--bright);
-            padding: calc(var(--padding-base) / 2) 0;
-        }
-    }
+.grid-row {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr)
 }

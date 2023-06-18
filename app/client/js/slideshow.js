@@ -4,11 +4,11 @@ export const renderSlideShow = () => {
 
   const showSlideImg = (i) => {
     $slideImgs.forEach((image) => {
-      image.classList.remove("active");
+      image.classList.remove("active-img");
       console.log(image);
     });
 
-    $slideImgs[i].classList.add("active");
+    $slideImgs[i].classList.add("active-img");
   };
 
   const nextSlideImg = () => {

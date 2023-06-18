@@ -26,6 +26,7 @@
 
 body {
   overflow-x: hidden;
+  font-size: var(--read-text-size);
 }
 
 .container {

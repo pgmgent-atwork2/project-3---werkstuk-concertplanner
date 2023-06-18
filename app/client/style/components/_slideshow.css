@@ -14,7 +14,7 @@
         object-position: top;
     }
 
-    & .active {
+    & .active-img {
         opacity: 1;
     }
 }

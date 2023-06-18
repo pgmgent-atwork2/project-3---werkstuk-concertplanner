@@ -9,21 +9,51 @@
         </p>
     </section>
 
-    <section class="block block--bottom">
-        <div class="row row--between">
+    <section class="block block--bottom listing">
+        <div class="grid-row listing__titles">
             <strong>
                 Datum voorstelling:
             </strong>
             
-            <strong>
+            <strong class="to-left">
                 Naam van het plan:
             </strong>
 
-            <strong>
+            <strong class="actions-title">
                 Acties:
             </strong>
         </div>
 
-        VOOR ELKE VORIGE BESTELLING EEN DIV MET DE DATUM, NAAM EN ACTIES-KNOPPEN.
+        <div>
+            {{#each plan}}
+                <div class="grid-row listing__item">
+                    <span class="text text--big">
+                        {{this.concert_date}}
+                    </span>
+
+                    <span>
+                        {{this.label}}
+
+                        <br>
+
+                        Opgesteld op <span class="active">{{this.creation_date}}</span>
+                    </span>
+
+                    <div class="listening__btns">
+                        <form action="">
+                            <button class="btn btn--secondary">
+                                Bewerken
+                            </button>
+                        </form>
+                        
+                        <form action="">
+                            <button class="btn btn--tertiairy">
+                                PDF downloaden
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
     </section>
 </div>

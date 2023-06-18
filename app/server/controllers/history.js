@@ -1,6 +1,7 @@
 import DataSource from "../lib/DataSource.js";
 
 const userRepo = await DataSource.getRepository("User");
+const planRepo = await DataSource.getRepository("Plan");
 
 export const getHistoryPage = async (req, res) => {
   try {
@@ -11,10 +12,17 @@ export const getHistoryPage = async (req, res) => {
       relations: ["plans"],
     });
 
-    console.log(loggedInUser);
+    const plan = await planRepo.find({
+      where: {
+        user: loggedInUser,
+      },
+    });
+
+    console.log(plan);
 
     res.render("user/history", {
       user: loggedInUser,
+      plan: plan,
     });
   } catch (error) {
     console.log(error);
