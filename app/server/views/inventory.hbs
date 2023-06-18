@@ -2,21 +2,27 @@
     Beschikbaar materiaal
 </h1>
 
-<section class="container">
-    <h2>
-        Beschikbaar
-    </h2>
+<div class="container container--normall">
+    <section class="block intro">
+        <h2>
+            Beschikbaar
+        </h2>
 
-    <div>
-        <ul>
-            {{#each inventory}}
-                {{!-- {{#if}} --}}
-                    <li>
-                        <a href="#{{this.collection.label}}">
-                            {{this.collection.label}}
-                        </a>
-                    </li>
-                {{!-- {{/if}} --}}
+        <p>
+            Bent u niet zeker of wij een bepaald element ter beschikking hebben? Dan bent u hier aan het juiste adres. Hier kunt u zien welke elementen wij ter beschikking hebben en hoeveel er van elk zijn.
+        </p>
+    </section>
+</div>
+
+<section>
+    <div class="container container--normall block block--collections">
+        <ul class="block--collections__list">
+            {{#each collection}}
+                <li data-scroll="smooth-scroll" class="btn btn--primary">
+                    <a href="#{{this.label}}">
+                        {{this.label}}
+                    </a>
+                </li>
             {{/each}}
         </ul>
 
@@ -25,36 +31,38 @@
         </a>
     </div>
 
-    <section>
-        {{#each collections}}
-            <h3>
-                {{this.label}}
-            </h3>
+    <div class="block block--bottom block--inventory">
+        {{#each collection}}
+            <div class="container container--normall block">
+                <h3 id="{{this.label}}" class="collection__titles text text--big">
+                    {{this.label}}
+                </h3>
+            </div>
 
-            <ul>
-                {{#each inventory}}
-                    {{#if (eq this.inventory.collection.id this.collection.id)}}
-                        <li>
-                            {{this.label}}
-                        </li>
-                    {{/if}}
+            <ul class="container container--wide inventory-list block">
+                {{#each this.inventory}}
+                    <li class="inventory-list__card">
+                        <div class="card__img"></div>
+
+                        <div class="card__text">
+                            <strong class="card__title">
+                                {{this.label}}
+                            </strong>
+                            
+                            <span class="card__description">
+                                Momenteel zijn er {{this.quantity}} beschikbaar!
+                            </span>
+                        </div>
+                    </li>
                 {{/each}}
             </ul>
         {{/each}}
-    </section>
-
-    <a href="link to ID">
-        Beschikbare elementen uit database
-    </a>
-</section>
-
-<section class="container--wide">
-    De elementen opgelijst
+    </div>
 </section>
 
 <section class="block block--lightblue">
-    <div class="container">
-        <div class="block__text">
+    <div class="container container--normall">
+        <div class="block--lightblue__content">
             <h2>
                 Vraag aan
             </h2>

@@ -1,6 +1,7 @@
 :root {
     /* text */
     --read-text-size: 17px;
+    --titles-normall: 28px;
 
     /* normal colors */
     --bright: hsl(0, 0%, 100%);
@@ -10,7 +11,7 @@
     --secondary: hsl(33, 41%, 57%);
     --tertiairy: hsl(5, 80%, 58%);
     --accent: hsl(189, 50%, 92%);
-    --hover-color: hsl(0, 0%, 50%);
+    --hover-color: #808080;
 
     /* colors plan-items */
     --green-one: #95ff85;
@@ -33,6 +34,7 @@
     /* space */
     --padding-base: 1.5rem;
     --padding-l: 2.5rem;
+    --margin-s: 1.5rem;
     --margin-base: 3rem;
 
     --spacing-s: 1rem;

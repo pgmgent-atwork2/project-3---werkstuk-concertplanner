@@ -194,7 +194,7 @@ export const postLogin = async (req, res, next) => {
     const token = jwt.sign(
       { id: user.id, email: req.body.email },
       process.env.TOKEN_SALT,
-      { expiresIn: "24h" }
+      { expiresIn: "1h" }
     );
     // create a cookie and add this to the response
     res.cookie("token", token, { httpOnly: true });
