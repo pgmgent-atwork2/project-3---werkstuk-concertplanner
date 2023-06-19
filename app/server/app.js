@@ -26,7 +26,8 @@ import {
   deleteSpecificUser,
 } from "./controllers/api/user.js";
 import { getUserDetailPage, editUserInfo } from "./controllers/user-detail.js";
-import { getIncommingPage } from "./controllers/incomming.js";
+import { getIncommingReqPage } from "./controllers/incomming-req.js";
+import { getIncommingPlanPage } from "./controllers/incomming-plan.js";
 import { getGroupPage } from "./controllers/group.js";
 import {
   getAllRequests,
@@ -94,7 +95,9 @@ app.post("/logout", logout);
 
 app.get("/detail-gebruiker/:id", jwtAuth, getUserDetailPage);
 
-app.get("/inkomend", jwtAuth, getIncommingPage);
+app.get("/inkomend-aanvragen", jwtAuth, getIncommingReqPage);
+
+app.get("/inkomend-plannen", jwtAuth, getIncommingPlanPage);
 
 app.get("/groepen", jwtAuth, getGroupPage);
 

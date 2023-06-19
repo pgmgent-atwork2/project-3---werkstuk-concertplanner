@@ -9,11 +9,11 @@
         </p>
 
         <div class="row intro__btns">
-            <a class="btn btn--secondary" href="">
+            <a class="btn btn--secondary" href="/inkomend-aanvragen">
                 Aanvragen
             </a>
             
-            <a class="btn" href="">
+            <a class="btn btn--secondary-neg" href="/inkomend-plannen">
                 Plannen
             </a>
         </div>
@@ -26,32 +26,32 @@
             </strong>
             
             <strong class="to-left">
-                Naam afzender:
+                Afzender:
             </strong>
             
-            <strong class="to-left">
+            <strong class="to-left-double">
                 Onderwerp:
             </strong>
 
-            <strong class="actions-title">
+            <strong class="to-left-double">
                 Acties:
             </strong>
         </div>
 
         <div>
-            {{#if plan}}
-                {{#each plan}}
+            {{#if request}}
+                {{#each request}}
                     <div class="grid-row grid-row--four listing__item">
-                        <span class="text text--big">
-                            {{this.concert_date}}
+                        <span>
+                            {{this.creation_date}}
                         </span>
 
                         <span>
-                            {{this.label}}
+                            {{this.user.email}}
+                        </span>
 
-                            <br>
-
-                            Opgesteld op <span class="active">{{this.creation_date}}</span>
+                        <span>
+                            {{this.subject}}
                         </span>
 
                         <div class="listening__btns">

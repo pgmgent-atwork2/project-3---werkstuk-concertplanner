@@ -1,9 +1,9 @@
 import DataSource from "../lib/DataSource.js";
 
 const userRepo = DataSource.getRepository("User");
-const groupRepo = DataSource.getRepository("User");
+const planRepo = DataSource.getRepository("Plan");
 
-export const getGroupPage = async (req, res) => {
+export const getIncommingPlanPage = async (req, res) => {
   try {
     const getLoggedInUser = await userRepo.findOne({
       where: {
@@ -12,11 +12,15 @@ export const getGroupPage = async (req, res) => {
       relations: ["user_meta", "role"],
     });
 
-    const getGroups = await groupRepo.find();
+    const getPlans = await planRepo.find({
+      relations: ["user", "user.user_meta"],
+    });
 
-    res.render("admin/groups", {
+    console.log(getPlans);
+
+    res.render("admin/plans-in", {
       user: getLoggedInUser,
-      group: getGroups,
+      plan: getPlans,
     });
   } catch (error) {
     console.log(error);

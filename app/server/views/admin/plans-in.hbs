@@ -1,0 +1,71 @@
+<div class="container container--normall">
+    <section class="block intro">
+        <h1 class="title--second">
+            Inkomend
+        </h1>
+
+        <p>
+            U kunt hier de inkomende aanvragen en plannen bekijken.
+        </p>
+
+        <div class="row intro__btns">
+            <a class="btn btn--secondary-neg" href="/inkomend-aanvragen">
+                Aanvragen
+            </a>
+            
+            <a class="btn btn--secondary" href="/inkomend-plannen">
+                Plannen
+            </a>
+        </div>
+    </section>
+
+    <section class="block block--bottom listing">
+        <div class="grid-row grid-row--three listing__titles">
+            <strong>
+                Datum aanvraag:
+            </strong>
+            
+            <strong class="to-left">
+                Afzender:
+            </strong>
+
+            <strong class="to-left-double">
+                Acties:
+            </strong>
+        </div>
+
+        <div>
+            {{#if plan}}
+                {{#each plan}}
+                    <div class="grid-row grid-row--three listing__item">
+                        <span>
+                            {{this.creation_date}}
+                        </span>
+
+                        <span>
+                            {{this.user.email}}
+                        </span>
+
+                        <div class="listening__btns">
+                            <form action="">
+                                <button class="btn btn--secondary">
+                                    Bewerken
+                                </button>
+                            </form>
+
+                            <form action="">
+                                <button class="btn btn--tertiairy">
+                                    PDF downloaden
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {{/each}}
+            {{else}}
+                <span class="listing_empty-message">
+                    Er zijn nog geen nieuwe aanvragen binnengekomen.
+                </span>
+            {{/if}}
+        </div>
+    </section>
+</div>

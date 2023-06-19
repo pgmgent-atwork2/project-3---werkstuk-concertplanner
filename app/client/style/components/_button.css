@@ -10,6 +10,7 @@
     text-align: center;
 
     &.btn:hover {
+        color: var(--bright);
         background-color: var(--hover-color);
     }
 
@@ -21,5 +22,11 @@
     &.btn--tertiairy {
         color: var(--bright);
         background-color: var(--tertiairy);
+    }
+
+    &.btn--secondary-neg {
+        color: var(--secondary);
+        background: none;
+        border: 2px solid var(--secondary);
     }
 }

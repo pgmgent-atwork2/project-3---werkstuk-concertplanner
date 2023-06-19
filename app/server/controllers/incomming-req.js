@@ -1,8 +1,9 @@
 import DataSource from "../lib/DataSource.js";
 
 const userRepo = DataSource.getRepository("User");
+const requestRepo = DataSource.getRepository("Request");
 
-export const getIncommingPage = async (req, res) => {
+export const getIncommingReqPage = async (req, res) => {
   try {
     const getLoggedInUser = await userRepo.findOne({
       where: {
@@ -11,8 +12,13 @@ export const getIncommingPage = async (req, res) => {
       relations: ["user_meta", "role"],
     });
 
+    const getRequests = await requestRepo.find({
+      relations: ["user", "user.user_meta"],
+    });
+
     res.render("admin/requests-in", {
       user: getLoggedInUser,
+      request: getRequests,
     });
   } catch (error) {
     console.log(error);

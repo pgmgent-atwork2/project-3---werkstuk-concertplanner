@@ -11,6 +11,10 @@
         transform: translateX(-.5rem);
     }
 
+    & .to-left-double {
+        transform: translateX(-1.4rem);
+    }
+
     & .listing__titles,
     & .listing__item:not(:last-child) {
         border-bottom: 3px dotted var(--light);
