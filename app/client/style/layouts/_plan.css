@@ -32,6 +32,11 @@ max-width: 80rem;
   padding: 0;
 }
 
+.plan-left svg {
+  width: 9rem;
+  height: 100%;
+}
+
 .plan-right {
   flex-grow: 1;
 }
@@ -66,11 +71,15 @@ max-width: 80rem;
   margin-right: var(--margin-base);
 }
 
+.plan-work {
+  margin-top: var(--margin-base);
+}
+
 .canvas {
   border: black 2px solid;
-  margin-right: 3rem;
   overflow-y: scroll;
-  height: 35rem;
+  min-height: 35rem;
+margin: auto;
 }
 
 
@@ -102,6 +111,7 @@ max-width: 80rem;
   padding-bottom: 0.5rem;
   font-size: var(--read-text-size);
   height: 2.5rem;
+  margin-left: var(--margin-base);
 }
 
 .plan-button1 {
@@ -113,6 +123,7 @@ max-width: 80rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   font-size: var(--read-text-size);
+  margin-left: var(--margin-base);
 }
 
 .plan-versturen {
@@ -124,6 +135,7 @@ max-width: 80rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   font-size: var(--read-text-size);
+  margin-right: var(--margin-base);
 }
 
 .selected {
