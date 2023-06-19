@@ -1,32 +1,30 @@
-body {
-  height: max-content;
-}
-
-img {
-  display: inline;
-  width: 5rem;
-}
-
-.flex-podium {
+.plan {
   display: flex;
   justify-content: space-between;
-  margin-top: 4.5rem;
 }
 
-#Podiumelementen {
-  margin-left: 3rem;
+.plan-left {
+  border-right: dotted 1px var(--dark);
+  overflow-y: scroll;
+  margin-left: var( --margin-base);
 }
 
-#canvas {
+.plan-header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2rem;
+  color: var(--bright);
+  background-color: var(--primary);
+}
+
+
+.canvas {
   border: black 2px solid;
   margin-right: 3rem;
   overflow-y: scroll;
   height: 35rem;
 }
 
-#legend {
-  margin-top: 20px;
-}
 
 .color {
   width: 20px;
