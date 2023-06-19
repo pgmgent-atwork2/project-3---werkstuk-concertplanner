@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
 import DataSource from "../lib/DataSource.js";
-import { jwtAuth } from "../middleware/jwtAuth.js";
 
 const userRepo = await DataSource.getRepository("User");
 const userMetaRepo = await DataSource.getRepository("UserMeta");
@@ -11,8 +10,10 @@ export const getUserDetailPage = async (req, res) => {
       where: {
         id: req.user.id,
       },
-      relations: ["user_meta"],
+      relations: ["user_meta", "role"],
     });
+
+    console.log(getLoggedInUser);
 
     res.render("detail", {
       user: getLoggedInUser,
