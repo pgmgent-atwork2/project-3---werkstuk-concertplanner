@@ -127,22 +127,29 @@
 
   &.block--plan {
     & .plan-card {
-      width: 400px;
-      max-width: 400px;
-      height: 12rem;
+      width: 15rem;
+      max-width: 15rem;
+      height: 6rem;
       box-shadow: 0 0 10px var(--light);
       flex-grow: 1;
       display: flex;
+      margin-bottom: var(--margin-base);
     }
 
     & .card__plan__img {
-      width: 50%;
+      width: 70%;
       height: 100%;
+      margin: 0;
       background-color: var(--primary);
     }
 
+    & .card__plan__text {
+      width: 30%;
+      padding: var(--padding-base);
+    }
+
     & .card__plan__title {
-      font-size: var(--titles-normall);
+      font-size: var(--read-text-size);
       line-height: 1;
       color: var(--dark);
     }

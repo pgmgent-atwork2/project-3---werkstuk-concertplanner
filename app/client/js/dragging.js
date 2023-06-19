@@ -1,3 +1,5 @@
+import * as PIXI from 'https://cdn.jsdelivr.net/npm/pixi.js';
+
 export const dragging = () => {
     
 

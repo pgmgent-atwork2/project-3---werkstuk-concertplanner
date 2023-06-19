@@ -3,7 +3,6 @@
 .plan {
   display: flex;
   margin: auto;
-  width: 100rem;
   background-color: var(--bright);
 }
 
@@ -27,6 +26,10 @@ max-width: 80rem;
   margin-bottom: var(--margin-base);
   font-size: var(--titles-normall);
   color: var(--secondary);
+}
+
+.plan-left ul {
+  padding: 0;
 }
 
 .plan-right {

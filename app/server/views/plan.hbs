@@ -14,7 +14,7 @@
           {{this.label}}
         </h2>
 
-        <ul class="block--plan">
+        <ul class="block block--plan">
           {{#each this.inventory}}
           <li class="plan-card">
             <div class="plan-card__left">
@@ -26,12 +26,12 @@
               </span>
             </div>
 
-            <div class="plan-card__right">
+            <div class="plan__card__text">
               <strong class="card__plan__title">
                 {{this.label}}
               </strong>
 
-              <span>
+              <span class="plan">
                 {{this.height}} m - {{this.width}} m
               </span>
             </div>
