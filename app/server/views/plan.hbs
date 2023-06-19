@@ -1,41 +1,81 @@
 <div class="plan">
   <div class="plan-left">
-    <h1>Inventaris</h1>
-    <input type="Zoeken" placeholder="Zoeken">
+    <h1>
+      Inventaris
+    </h1>
+
+    <input type="Zoeken" placeholder="Zoeken" />
+
     <div class="inventaris">
-      {{#each collections}}
-      <div>
-        <h3>{{this.label}}</h3>
-        <ul>
-          {{#each this.inventory}}
-          <li>
-            <img src="{{this.image}}" alt="afbeelding object">
-            <span>{{this.label}}</span>
-            <span>{{this.quantity}}</span>
-            <span>{{this.height}} m - {{this.width}} m</span>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+      {{#each collection}}
+        <div>
+          <h3>
+            {{this.label}}
+          </h3>
+
+          <ul>
+            {{#each this.inventory}}
+              <li class="plan-card">
+                <div class="plan-card__left">
+                  <img src="{{this.image}}" alt="afbeelding object"/>
+
+                  <span>
+                    {{this.quantity}}
+                  </span>
+                </div>
+
+                <div class="plan-card__right">
+                  <span>
+                    {{this.label}}
+                  </span>
+
+                  <span>
+                    {{this.height}} m - {{this.width}} m
+                  </span>
+                </div> 
+              </li>
+            {{/each}}
+          </ul>
+        </div>
       {{/each}}
     </div>
   </div>
+
   <div class="plan-right">
     <div class="plan-header">
-      <a href="/beschikbaar-materiaal">Terug naar materialen</a>
+      <a href="/beschikbaar-materiaal">
+        Terug naar materialen
+      </a>
+
       <div class="plan-header-input">
-        <input type="text" placeholder="Naam plan">
-        <input type="text" placeholder="Naam groep">
-        <input type="date" name="datum" id="datum">
+        <input type="text" placeholder="Naam plan"/>
+
+        <input type="text" placeholder="Naam groep"/>
+
+        <input type="date" name="datum" id="datum"/>
       </div>
     </div>
+
     <div class="plan-work">
       <div class="plan-work-flex">
-      <button class="plan-refresh" onclick="location.reload();">Resetten</button>
-      <div id="canvas" class="canvas"></div></div>
-      <button class="plan-button1">Delen met...</button>
-      <button class="plan-button1">Afdrukken als PDF</button>
-      <button class="plan-versturen">Versturen</button>
+        <button class="plan-refresh" onclick="location.reload();">
+          Resetten
+        </button>
+
+        <div id="canvas" class="canvas"></div>
+      </div>
+
+      <button class="plan-button1">
+        Delen met...
+      </button>
+
+      <button class="plan-button1">
+        Afdrukken als PDF
+      </button>
+
+      <button class="plan-versturen">
+        Versturen
+      </button>
     </div>
   </div>
 </div>
