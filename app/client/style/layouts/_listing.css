@@ -33,6 +33,11 @@
         }
     }
 
+    & .listing_empty-message {
+        color: var(--hover-color);
+        margin-top: var(--margin-s);
+    }
+
     & .listening__btns {
         display: flex;
         gap: var(--spacing-s);

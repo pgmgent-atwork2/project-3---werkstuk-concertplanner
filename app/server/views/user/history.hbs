@@ -25,35 +25,41 @@
         </div>
 
         <div>
-            {{#each plan}}
-                <div class="grid-row listing__item">
-                    <span class="text text--big">
-                        {{this.concert_date}}
-                    </span>
+            {{#if plan}}
+                {{#each plan}}
+                    <div class="grid-row listing__item">
+                        <span class="text text--big">
+                            {{this.concert_date}}
+                        </span>
 
-                    <span>
-                        {{this.label}}
+                        <span>
+                            {{this.label}}
 
-                        <br>
+                            <br>
 
-                        Opgesteld op <span class="active">{{this.creation_date}}</span>
-                    </span>
+                            Opgesteld op <span class="active">{{this.creation_date}}</span>
+                        </span>
 
-                    <div class="listening__btns">
-                        <form action="">
-                            <button class="btn btn--secondary">
-                                Bewerken
-                            </button>
-                        </form>
-                        
-                        <form action="">
-                            <button class="btn btn--tertiairy">
-                                PDF downloaden
-                            </button>
-                        </form>
+                        <div class="listening__btns">
+                            <form action="">
+                                <button class="btn btn--secondary">
+                                    Bewerken
+                                </button>
+                            </form>
+                            
+                            <form action="">
+                                <button class="btn btn--tertiairy">
+                                    PDF downloaden
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            {{/each}}
+                {{/each}}
+            {{else}}
+                <span class="listing_empty-message">
+                    U heeft nog geen plannen aangemaakt.
+                </span>
+            {{/if}}
         </div>
     </section>
 </div>
