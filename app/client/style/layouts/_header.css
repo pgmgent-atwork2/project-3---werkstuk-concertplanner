@@ -42,6 +42,7 @@
         position: fixed;
         bottom: var(--spacing-m);
         right: var(--spacing-m);
+        z-index: 50;
 
         &.user-icon:hover {
             filter: brightness(1.5);

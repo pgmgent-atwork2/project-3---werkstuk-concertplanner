@@ -18,8 +18,6 @@ export const getHistoryPage = async (req, res) => {
       },
     });
 
-    console.log(plan);
-
     res.render("user/history", {
       user: loggedInUser,
       plan: plan,

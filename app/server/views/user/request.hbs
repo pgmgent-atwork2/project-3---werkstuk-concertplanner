@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container--normall">
     <section class="block intro block__text">
         <h1 class="title--second">
             Vraag aan
@@ -9,7 +9,7 @@
         </p>
     </section>
 
-    <section class="block block--bottom">
+    <section class="block block--bottom block--request">
         <form class="full-form" action="/aanvragen">
             <fieldset class="text text--intro-size">
                 <input type="hidden" value="{{user.id}}" name="userId">
@@ -19,7 +19,7 @@
                         Onderwerp
                     </label>
 
-                    <input required type="text" name="subject">
+                    <input required type="text" name="subject" placeholder="Onderwerp van uw aanvraag">
                 </div>
 
                 <div>
@@ -27,7 +27,7 @@
                         Beschrijving
                     </label>
 
-                    <input required type="text" name="description" class="big-input">
+                    <textarea required name="description" rows="10" placeholder="Beschrijving van wat u wilt vragen"></textarea>
                 </div>
             </fieldset>
 

@@ -24,20 +24,28 @@
 	white-space: normal !important;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
   overflow-x: hidden;
   font-size: var(--read-text-size);
 }
 
 .container {
-  max-width: 1170px;
   margin: 0 auto;
+
+  &.container--normall {
+	max-width: 73rem;
 }
 
-.container--wide {
+  &.container--wide {
 	max-width: 86rem;
-	margin: 0 auto;
 }
+}
+
+
 
 input {
   border-radius: 0;
