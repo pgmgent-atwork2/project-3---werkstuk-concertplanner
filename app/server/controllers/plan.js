@@ -10,6 +10,7 @@ export const getPlanPage = async (req, res, next) => {
     const getCollections = await collectionRepo.find();
 
     res.render("plan", {
+        layout: "authentication",
       user: req.user,
       inventory: getInventory,
       collections: getCollections,
