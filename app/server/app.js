@@ -26,6 +26,8 @@ import {
   deleteSpecificUser,
 } from "./controllers/api/user.js";
 import { getUserDetailPage, editUserInfo } from "./controllers/user-detail.js";
+import { getIncommingPage } from "./controllers/incomming.js";
+import { getGroupPage } from "./controllers/group.js";
 import {
   getAllRequests,
   getSpecificRequest,
@@ -91,6 +93,10 @@ app.post("/register", registerAuth, postRegister, register);
 app.post("/logout", logout);
 
 app.get("/detail-gebruiker/:id", jwtAuth, getUserDetailPage);
+
+app.get("/inkomend", jwtAuth, getIncommingPage);
+
+app.get("/groepen", jwtAuth, getGroupPage);
 
 app.get("/beschikbaar-materiaal", jwtAuth, getInventoryPage);
 
