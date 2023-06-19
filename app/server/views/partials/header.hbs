@@ -13,9 +13,33 @@ compare string handlebars helper --}}
         </a>
     
 
-        {{!-- {{#if (eq user.role.label "admin")}}
-            <p>ADMIN NAV</p>
-        {{else}} --}}
+        {{#eq user.role.label "admin"}}
+            <ul class="nav__list">
+                <li>
+                    <a href="/beschikbaar-materiaal">
+                        Inkomend
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/plan-opstellen">
+                        Plan opstellen
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/geschiedenis">
+                        Inventaris
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/vraag-aan">
+                        Groepen
+                    </a>
+                </li>
+            </ul>
+        {{else}}
             <ul class="nav__list">
                 <li>
                     <a href="/beschikbaar-materiaal">
@@ -41,7 +65,7 @@ compare string handlebars helper --}}
                     </a>
                 </li>
             </ul>
-        {{!-- {{/if}} --}}
+        {{/eq}}
     </nav>
 
     <svg class="circle-shape" xmlns="http://www.w3.org/2000/svg" width="599" height="599" fill="none"><circle cx="299.5" cy="299.5" r="298.5" stroke="var(--secondary)" stroke-width="2"/></svg>

@@ -126,6 +126,7 @@
   }
 
   &.block--plan {
+    background-color: red;
     & .plan-card {
       width: 400px;
       max-width: 400px;
