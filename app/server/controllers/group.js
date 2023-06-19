@@ -12,8 +12,10 @@ export const getGroupPage = async (req, res) => {
       relations: ["user_meta", "role"],
     });
 
-    const getGroups = await groupRepo.find();
-
+    const getGroups = await groupRepo.find({
+      relations: ["user_meta"],
+    });
+    
     res.render("admin/groups", {
       user: getLoggedInUser,
       group: getGroups,
