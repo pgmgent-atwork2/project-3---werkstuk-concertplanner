@@ -1,10 +1,11 @@
-import handlebars from "handlebars";
-const { SafeString } = handlebars;
+import Handlebars from "handlebars";
 
 export default {
-  isUnique: function (label, array) {
-    return !array.find(function (item) {
-      return item.collection.label === label;
-    });
+  eq: function (optionOne, optionTwo, options) {
+    if (optionOne === optionTwo) {
+      return options.fn(this);
+    } else {
+      return options.inverse(this);
+    }
   },
 };

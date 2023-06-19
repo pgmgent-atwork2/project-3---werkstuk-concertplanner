@@ -3,3 +3,77 @@
 
     <path d="M37.09 24.34 25 7.25 12.91 24.34h8.37v18.41h7.44V24.34z" style="fill:#fff"/>
 </svg> --}}
+
+<div class="container container--normall">
+    <section class="block intro">
+        <h1 class="title--second">
+            Inkomend
+        </h1>
+
+        <p>
+            U kunt hier de inkomende aanvragen en plannen bekijken.
+        </p>
+
+        <div class="row intro__btns">
+            <a class="btn btn--secondary" href="">
+                Aanvragen
+            </a>
+            
+            <a class="btn" href="">
+                Plannen
+            </a>
+        </div>
+    </section>
+
+    <section class="block block--bottom listing">
+        <div class="grid-row grid-row--four listing__titles">
+            <strong>
+                Datum aanvraag:
+            </strong>
+            
+            <strong class="to-left">
+                Naam afzender:
+            </strong>
+            
+            <strong class="to-left">
+                Onderwerp:
+            </strong>
+
+            <strong class="actions-title">
+                Acties:
+            </strong>
+        </div>
+
+        <div>
+            {{#if plan}}
+                {{#each plan}}
+                    <div class="grid-row grid-row--four listing__item">
+                        <span class="text text--big">
+                            {{this.concert_date}}
+                        </span>
+
+                        <span>
+                            {{this.label}}
+
+                            <br>
+
+                            Opgesteld op <span class="active">{{this.creation_date}}</span>
+                        </span>
+
+                        <div class="listening__btns">
+                            <form action="">
+                                <button class="btn btn--secondary">
+                                    Bekijken
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {{/each}}
+            {{else}}
+                <span class="listing_empty-message">
+                    Er zijn nog geen nieuwe aanvragen binnengekomen.
+                </span>
+            {{/if}}
+        </div>
+    </section>
+</div>

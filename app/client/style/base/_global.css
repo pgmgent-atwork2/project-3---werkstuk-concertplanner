@@ -61,10 +61,6 @@ h1, h2 {
   line-height: 1;
   margin-bottom: calc(var(--spacing-s) * 1.5);
 }
-  
-/*img {
-  display: none;
-}*/
 
 span:not(.span--inline) {
   display: block;
@@ -100,4 +96,9 @@ a {
 .intro {
 	max-width: 50%;
     margin-bottom: var(--margin-base);
+
+	& .intro__btns {
+		margin: var(--spacing-s) 0 calc(var(--spacing-m) * 2) 0;
+		gap: var(--spacing-s);
+	}
 }
