@@ -1,5 +1,7 @@
+<div class="plan">
+<div class="plan-left">
 <h1>Inventaris</h1>
-<input type="Zoeken">
+<input type="Zoeken" placeholder="Zoeken">
 <div class="inventaris">
   {{#each collections}}
   <div>
@@ -7,7 +9,7 @@
     <ul>
         {{#each inventory}} 
       <li>
-        <span>{{this}}</span>
+        <span>{{this.label}}</span>
         <span>{{this}}</span>
         <span>{{this}}</span>
       </li>
@@ -15,4 +17,23 @@
     </ul>
   </div>
   {{/each}}
+</div>
+</div>
+<div class="plan-right">
+  <div class="plan-header">
+   <a href="">Terug naar materialen</a>
+   <div class="plan-header-input">
+    <input type="text" placeholder="Naam plan">
+    <input type="text" placeholder="Naam groep">
+    <input type="date" name="datum" id="datum">
+   </div>
+  </div>
+  <div class="plan-work">
+    <button>Resetten</button>
+<div id="canvas" class="canvas"></div>
+<button>Delen met...</button>
+<button>Afdrukken als PDF</button>
+<button>Versturen</button>
+  </div>
+</div>
 </div>
