@@ -1,11 +1,36 @@
+
+
 .plan {
   display: flex;
+  margin: auto;
+  width: 100rem;
+  background-color: var(--bright);
 }
 
 .plan-left {
   border-right: dotted 1px var(--dark);
   overflow-y: scroll;
+  overflow-x: hidden;
   margin-left: var( --margin-base);
+  width: 20rem;
+  height: 100vh;
+}
+
+.plan-left h1{
+margin-top: var(--margin-base);
+margin-bottom: var(--margin-base);
+max-width: 80rem;
+}
+
+.plan-left h2 {
+  margin-top: var(--margin-base);
+  margin-bottom: var(--margin-base);
+  font-size: var(--titles-normall);
+  color: var(--secondary);
+}
+
+.plan-right {
+  flex-grow: 1;
 }
 
 .plan-header {
@@ -14,13 +39,24 @@
   padding-left: 2rem;
   color: var(--bright);
   background-color: var(--primary);
-  padding: var(--spacing-m);
+  padding-top: var(--spacing-m);
+  padding-bottom: var(--spacing-m);
 }
 
 .plan-header a {
   text-decoration: none;
   color: var(--bright);
   margin-right: var(--margin-base);
+  display: flex;
+}
+
+.plan-header a svg {
+  margin-top: -0.5rem;
+}
+
+.plan-header-input {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .plan-header-input input {
@@ -62,6 +98,7 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   font-size: var(--read-text-size);
+  height: 2.5rem;
 }
 
 .plan-button1 {

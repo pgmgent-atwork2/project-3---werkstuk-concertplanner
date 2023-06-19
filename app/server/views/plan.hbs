@@ -1,3 +1,4 @@
+<div class="plan-backgroundcolor">
 <div class="plan">
   <div class="plan-left">
     <h1>
@@ -8,35 +9,36 @@
 
     <div class="inventaris">
       {{#each collection}}
-        <div>
-          <h3>
-            {{this.label}}
-          </h3>
+      <div>
+        <h2>
+          {{this.label}}
+        </h2>
 
-          <ul>
-            {{#each this.inventory}}
-              <li class="plan-card">
-                <div class="plan-card__left">
-                  <img src="{{this.image}}" alt="afbeelding object"/>
+        <ul class="block--plan">
+          {{#each this.inventory}}
+          <li class="plan-card">
+            <div class="plan-card__left">
+              <div class="card__plan__img">
+              <img src="{{this.image}}" alt="afbeelding object" />
+</div>
+              <span>
+                {{this.quantity}}
+              </span>
+            </div>
 
-                  <span>
-                    {{this.quantity}}
-                  </span>
-                </div>
+            <div class="plan-card__right">
+              <strong class="card__plan__title">
+                {{this.label}}
+              </strong>
 
-                <div class="plan-card__right">
-                  <span>
-                    {{this.label}}
-                  </span>
-
-                  <span>
-                    {{this.height}} m - {{this.width}} m
-                  </span>
-                </div> 
-              </li>
-            {{/each}}
-          </ul>
-        </div>
+              <span>
+                {{this.height}} m - {{this.width}} m
+              </span>
+            </div>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
       {{/each}}
     </div>
   </div>
@@ -44,15 +46,29 @@
   <div class="plan-right">
     <div class="plan-header">
       <a href="/beschikbaar-materiaal">
-        Terug naar materialen
+        <svg width="43" height="43" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#a)">
+            <path d="M11.5 21.866a1 1 0 0 1 0-1.732L28 10.608a1 1 0 0 1 1.5.866v19.052a1 1 0 0 1-1.5.866l-16.5-9.526Z"
+              fill="hsl(33, 41%, 57%)" />
+          </g>
+          <defs>
+            <clipPath id="a">
+              <path fill="#fff" transform="rotate(45 11.314 27.314)" d="M0 0h28v32H0z" />
+            </clipPath>
+          </defs>
+        </svg> Terug naar materialen
       </a>
 
       <div class="plan-header-input">
-        <input type="text" placeholder="Naam plan"/>
-
-        <input type="text" placeholder="Naam groep"/>
-
-        <input type="date" name="datum" id="datum"/>
+        <div class="form-name-plan">
+          <input type="text" placeholder="Naam plan" />
+        </div>
+        <div class="form-name-groep">
+          <input type="text" placeholder="Naam groep"  value="{{user.user_meta.name}}"/>
+        </div>
+        <div class="form-date">
+          <input type="date" name="datum" id="datum" />
+        </div>
       </div>
     </div>
 
@@ -78,4 +94,5 @@
       </button>
     </div>
   </div>
+</div>
 </div>

@@ -10,12 +10,19 @@ export const getPlanPage = async (req, res, next) => {
     const collections = await collectionRepo.find({
       relations: ["inventory"],
     });
+    const getLoggedInUser = await userRepo.findOne({
+        where: {
+          id: req.user.id,
+        },
+        relations: ["user_meta", "role"],
+      });
 
     res.render("plan", {
       layout: "authentication",
       user: req.user,
       inventory: getInventory,
       collection: collections,
+      user: getLoggedInUser,
     });
   } catch (error) {
     console.log(error);
