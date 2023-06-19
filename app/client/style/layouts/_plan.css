@@ -1,6 +1,5 @@
 .plan {
   display: flex;
-  justify-content: space-between;
 }
 
 .plan-left {
@@ -15,8 +14,18 @@
   padding-left: 2rem;
   color: var(--bright);
   background-color: var(--primary);
+  padding: var(--spacing-m);
 }
 
+.plan-header a {
+  text-decoration: none;
+  color: var(--bright);
+  margin-right: var(--margin-base);
+}
+
+.plan-header-input input {
+  margin-right: var(--margin-base);
+}
 
 .canvas {
   border: black 2px solid;
@@ -33,6 +42,48 @@
   margin-right: 10px;
   cursor: pointer;
   border: 1px solid #000;
+}
+
+.plan-work {
+  margin-bottom: var(--margin-base);
+}
+
+.plan-work-flex {
+  display: flex;
+  margin-bottom: var(--margin-base);
+}
+
+.plan-refresh {
+  border: solid 1px var(--tertiairy);
+  color: var(--tertiairy);
+  background-color: var(--bright);
+  padding-left: var(--spacing-m);
+  padding-right: var(--spacing-m);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: var(--read-text-size);
+}
+
+.plan-button1 {
+  background-color: var(--secondary);
+  border: 1px solid var(--secondary);
+  color: var(--bright);
+  padding-left: var(--spacing-m);
+  padding-right: var(--spacing-m);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: var(--read-text-size);
+}
+
+.plan-versturen {
+  background-color: var(--tertiairy);
+  border: 1px solid var(--tertiairy);
+  color: var(--bright);
+  padding-left: var(--spacing-m);
+  padding-right: var(--spacing-m);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: var(--read-text-size);
 }
 
 .selected {

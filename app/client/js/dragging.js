@@ -1,4 +1,5 @@
 export const dragging = () => {
+    
 
 document.addEventListener("DOMContentLoaded", () => {
   const app = new PIXI.Application({
