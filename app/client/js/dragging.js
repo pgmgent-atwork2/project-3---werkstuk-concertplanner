@@ -16,7 +16,7 @@ export const dragging = () => {
     app.stage.addChild(backgroundSprite);
 
     // Define grid properties
-    const gridSize = 25; // Size of each grid cell
+    const gridSize = 10; // Size of each grid cell
     const gridColor = 0xcccccc; // Color of the grid lines
 
     // Create a graphics object for drawing
@@ -44,7 +44,7 @@ export const dragging = () => {
 
     // Select list items
     const listItems = document.querySelectorAll(
-      ' li'
+      '[data-list-elements="elements"] li'
     );
 
     function makeBounds(object1, object2) {
@@ -97,11 +97,28 @@ export const dragging = () => {
         container.buttonMode = true;
         container.cursor = "grab";
 
+        const svg = item.querySelector("svg");
+
+        const svgString = new XMLSerializer().serializeToString(svg);
+        const svgDataUrl = `data:image/svg+xml;base64,${window.btoa(
+          svgString
+        )}`;
+
+        const image = new Image();
+        image.src = svgDataUrl;
+
+        image.onload = () => {
+          const texture = PIXI.Texture.from(image);
+
           // Set the sprite properties
-          const sprite = new PIXI.Sprite(item.svg);
+          const width = parseFloat(item.dataset.width) || 40; // Use 40 as default if data-width is not set
+          const height = parseFloat(item.dataset.height) || 40; // Use 40 as default if data-height is not set
+
+          // Set the sprite properties
+          const sprite = new PIXI.Sprite(texture);
           sprite.anchor.set(0.5);
-          sprite.width = 40; // Set the width to 100 pixels
-          sprite.height = 40; // Set the height to 100 pixels
+          sprite.width = width * 20; // Multiply the width by 10
+          sprite.height = height * 20; // Multiply the height by 10
 
           // Create a border graphics object
           const border = new PIXI.Graphics();
@@ -115,24 +132,24 @@ export const dragging = () => {
 
           container.addChild(border); // Add the border to the container
           container.addChild(sprite);
+        };
 
-          // Event listeners for drag functionality
-          container
-            .on("pointerdown", onDragStart)
-            .on("pointermove", onDragMove)
-            .on("pointerup", onDragEnd)
-            .on("pointerupoutside", onDragEnd);
+        // Event listeners for drag functionality
+        container
+          .on("pointerdown", onDragStart)
+          .on("pointermove", onDragMove)
+          .on("pointerup", onDragEnd)
+          .on("pointerupoutside", onDragEnd);
 
-          // Store the stackable attribute in the container's data
-          container.data = {
-            stackable: stackable,
-          };
+        //Store the stackable attribute in the container's data
+        container.data = {
+          stackable: stackable,
+        };
 
-          app.stage.addChild(container);
+        app.stage.addChild(container);
 
-          // Add the container to the selectedItems array
-          selectedItems.push(container);
-        });
+        // Add the container to the selectedItems array
+        selectedItems.push(container);
       });
     });
 
@@ -326,5 +343,5 @@ export const dragging = () => {
         window.removeEventListener("keyup", onKeyUp);
       }
     }
-  };
-
+  });
+};
