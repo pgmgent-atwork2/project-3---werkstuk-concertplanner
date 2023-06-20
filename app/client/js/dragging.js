@@ -44,7 +44,7 @@ export const dragging = () => {
 
     // Select list items
     const listItems = document.querySelectorAll(
-      '[data-list-elements="elements"] li'
+      ' li'
     );
 
     function makeBounds(object1, object2) {
@@ -97,10 +97,8 @@ export const dragging = () => {
         container.buttonMode = true;
         container.cursor = "grab";
 
-        // Load and create the SVG sprite
-        SVG.from(item.dataset.svg, (svg) => {
           // Set the sprite properties
-          const sprite = new PIXI.Sprite(svg.texture);
+          const sprite = new PIXI.Sprite(item.svg);
           sprite.anchor.set(0.5);
           sprite.width = 40; // Set the width to 100 pixels
           sprite.height = 40; // Set the height to 100 pixels
@@ -328,5 +326,5 @@ export const dragging = () => {
         window.removeEventListener("keyup", onKeyUp);
       }
     }
-  });
-};
+  };
+
