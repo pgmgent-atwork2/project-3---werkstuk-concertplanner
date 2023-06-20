@@ -62,7 +62,7 @@ import {
   addPlan,
   deletePlan,
 } from "./controllers/api/plan.js";
-import { getPlanPage } from "./controllers/plan.js";
+import { getPlanPage, postPlan } from "./controllers/plan.js";
 import { getHistoryPage } from "./controllers/history.js";
 
 import registerAuth from "./middleware/validation/registerAuth.js";
@@ -144,6 +144,7 @@ app.get("/inventaris/:id", deleteInvItem);
 
 app.get("/api/plannen", getAllPlans);
 app.get("/api/plannen/:id", getSpecificPlan);
+app.post("/plannen", jwtAuth, postPlan);
 app.post("/api/plannen", addPlan);
 app.delete("/api/plannen/:id", deletePlan);
 

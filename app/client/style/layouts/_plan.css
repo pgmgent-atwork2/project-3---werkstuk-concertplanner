@@ -44,6 +44,7 @@ max-width: 80rem;
 .plan-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-left: 2rem;
   color: var(--bright);
   background-color: var(--primary);
@@ -56,6 +57,7 @@ max-width: 80rem;
   color: var(--bright);
   margin-right: var(--margin-base);
   display: flex;
+  align-items: center;
 }
 
 .plan-header a svg {
@@ -65,6 +67,12 @@ max-width: 80rem;
 .plan-header-input {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  transform: translateX(-3rem);
+
+  & .btn {
+    transform: translateY(-.5rem);
+  }
 }
 
 .plan-header-input input {

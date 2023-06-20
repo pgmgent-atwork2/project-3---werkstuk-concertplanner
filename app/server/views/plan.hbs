@@ -65,17 +65,23 @@
           </svg> Terug naar materialen
         </a>
 
-        <div class="plan-header-input">
+        <form class="plan-header-input" action="/plannen">
+          <input type="hidden" name="user_id" value="{{user.id}}">
+
+          <input type="hidden" name="creation_date" value="{{getDate}}">
+
           <div class="form-name-plan">
-            <input type="text" placeholder="Naam plan" />
+            <input name="label" type="text" placeholder="Naam plan" />
           </div>
-          <div class="form-name-groep">
-            <input type="text" placeholder="Naam groep" value="{{user.user_meta.name}}" />
-          </div>
+
           <div class="form-date">
-            <input type="date" name="datum" id="datum" />
+            <input name="concert_date" type="date" name="datum" id="datum" />
           </div>
-        </div>
+
+          <button class="btn btn--tertiairy" type="submit" formmethod="post">
+            Versturen
+          </button>
+        </form>
       </div>
 
       <div class="plan-work">
@@ -93,10 +99,6 @@
 
         <button class="plan-button1" data-pdf="pdf">
           Afdrukken als PDF
-        </button>
-
-        <button class="plan-versturen">
-          Versturen
         </button>
       </div>
     </div>
