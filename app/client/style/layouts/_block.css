@@ -72,6 +72,21 @@
       display: flex;
       flex-wrap: wrap;
       gap: var(--spacing-s);
+      align-items: center;
+
+      & .add-collection {
+        transform: translateY(.5rem);
+      }
+
+      & .add-collection__input {
+        padding: .5rem;
+      }
+
+      & button {
+        background: none;
+        padding: 0;
+        border: none;
+      }
     }
 
     & a {

@@ -52,6 +52,7 @@ import {
 } from "./controllers/api/inventory.js";
 import {
   getInventoryPage,
+  postCollection,
   postInventoryItem,
   deleteInvItem,
 } from "./controllers/inventory.js";
@@ -129,6 +130,7 @@ app.delete("/api/gebruikers/:id", deleteSpecificUser);
 app.get("/api/collecties", getAllCollections);
 app.get("/api/collecties/:id", getSpecificCollection);
 app.post("/api/collecties", addCollection);
+app.post("/collecties", jwtAuth, postCollection);
 app.put("/api/collecties/:id", editCollection);
 app.delete("/api/collecties/:id", deleteCollection);
 

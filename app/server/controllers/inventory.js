@@ -26,6 +26,32 @@ export const getInventoryPage = async (req, res) => {
   }
 };
 
+export const postCollection = async (req, res) => {
+  try {
+    const collection = await collectionRepo.findOne({
+      where: {
+        label: req.body.label,
+      },
+    });
+
+    if (collection) {
+      return res.status(409).json({
+        status: "Collection item already exists!",
+      });
+    } else {
+      const newCollection = {
+        ...req.body,
+      };
+
+      await collectionRepo.save(newCollection);
+    }
+
+    res.redirect("beschikbaar-materiaal");
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+};
+
 export const postInventoryItem = async (req, res) => {
   try {
     const loggedInUser = await userRepo.findOne({
