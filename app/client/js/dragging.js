@@ -230,14 +230,21 @@ export const dragging = () => {
     }
 
     function onKeyDown(event) {
-      if (event.key === "ArrowLeft") {
-        // Rotate left
-        dragTarget.rotation -= Math.PI / 4; // Rotate by 45 degrees counterclockwise
-      } else if (event.key === "ArrowRight") {
-        // Rotate right
-        dragTarget.rotation += Math.PI / 4; // Rotate by 45 degrees clockwise
+        if (event.key === "ArrowLeft") {
+          // Rotate left
+          dragTarget.rotation -= Math.PI / 4; // Rotate by 45 degrees counterclockwise
+        } else if (event.key === "ArrowRight") {
+          // Rotate right
+          dragTarget.rotation += Math.PI / 4; // Rotate by 45 degrees clockwise
+        } else if (event.key === "Delete" || event.keyCode === 46) {
+          // Delete the item
+          if (dragTarget) {
+            app.stage.removeChild(dragTarget);
+            dragTarget = null;
+          }
+        }
       }
-    }
+      
 
     function onKeyUp(event) {
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
