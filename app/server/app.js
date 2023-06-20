@@ -50,7 +50,11 @@ import {
   editInventoryItem,
   deleteInventoryItem,
 } from "./controllers/api/inventory.js";
-import { getInventoryPage } from "./controllers/inventory.js";
+import {
+  getInventoryPage,
+  postInventoryItem,
+  deleteInvItem,
+} from "./controllers/inventory.js";
 import {
   getAllPlans,
   getSpecificPlan,
@@ -64,12 +68,18 @@ import registerAuth from "./middleware/validation/registerAuth.js";
 import loginAuth from "./middleware/validation/loginAuth.js";
 import { jwtAuth } from "./middleware/jwtAuth.js";
 
+import swaggerUi from "swagger-ui-express";
+import swaggerDefinition from "./docs/swagger.js";
+
 /* Setup express server */
 const app = express();
 app.use(express.static("client"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+/* Add Swagger Docs */
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
 
 /* Add handlebars to app */
 const hbs = create({
@@ -125,8 +135,10 @@ app.delete("/api/collecties/:id", deleteCollection);
 app.get("/api/inventaris", getInventory);
 app.get("/api/inventaris/:id", getInventoryItem);
 app.post("/api/inventaris", addInventoryItem);
+app.post("/inventaris", jwtAuth, postInventoryItem);
 app.put("/api/inventaris/:id", editInventoryItem);
 app.delete("/api/inventaris/:id", deleteInventoryItem);
+app.get("/inventaris/:id", deleteInvItem);
 
 app.get("/api/plannen", getAllPlans);
 app.get("/api/plannen/:id", getSpecificPlan);

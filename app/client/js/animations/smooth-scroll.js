@@ -1,9 +1,15 @@
+import { log } from "handlebars/runtime";
+
 export const smoothScroll = () => {
-  const smoothScrollLinks = document.querySelectorAll(
+  const $smoothScrollLinks = document.querySelectorAll(
     "[data-scroll='smooth-scroll']"
   );
 
-  smoothScrollLinks.forEach((link) => {
+  if ($smoothScrollLinks.length === 0) {
+    return;
+  }
+
+  $smoothScrollLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
 
