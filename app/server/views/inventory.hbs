@@ -26,6 +26,28 @@
           </a>
         </li>
       {{/each}}
+
+      {{#eq user.role.label "admin"}}
+        <li class="add-collection">
+          <form class="row" action="/collecties">
+            <input class="add-collection__input" required type="text" name="label" placeholder="Naam collectie"/>
+
+            <button class="add-inv" type="submit" formmethod="post">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  fill="none"
+              >
+                <path fill="#BE9664" d="M0 0h48v48H0z" /><path
+                  fill="#fff"
+                  d="M26 13c0-1.106-.894-2-2-2-1.106 0-2 .894-2 2v9h-9c-1.106 0-2 .894-2 2 0 1.106.894 2 2 2h9v9c0 1.106.894 2 2 2 1.106 0 2-.894 2-2v-9h9c1.106 0 2-.894 2-2 0-1.106-.894-2-2-2h-9v-9Z"
+                  />
+                </svg>
+              </button>
+          </form>
+        </li>
+      {{/eq}}
     </ul>
 
     <a href="/plan-opstellen" class="btn btn--tertiairy">
@@ -74,15 +96,17 @@
             <li class="inventory-list__card add-inv-card">
                 <form class="add-inventory-form" action="/inventaris">
                     <button class="add-inv" type="submit" formmethod="post">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        fill="none"
-                    ><path fill="#BE9664" d="M0 0h48v48H0z" /><path
-                        fill="#fff"
-                        d="M26 13c0-1.106-.894-2-2-2-1.106 0-2 .894-2 2v9h-9c-1.106 0-2 .894-2 2 0 1.106.894 2 2 2h9v9c0 1.106.894 2 2 2 1.106 0 2-.894 2-2v-9h9c1.106 0 2-.894 2-2 0-1.106-.894-2-2-2h-9v-9Z"
-                        /></svg>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          fill="none"
+                      >
+                        <path fill="#BE9664" d="M0 0h48v48H0z" /><path
+                          fill="#fff"
+                          d="M26 13c0-1.106-.894-2-2-2-1.106 0-2 .894-2 2v9h-9c-1.106 0-2 .894-2 2 0 1.106.894 2 2 2h9v9c0 1.106.894 2 2 2 1.106 0 2-.894 2-2v-9h9c1.106 0 2-.894 2-2 0-1.106-.894-2-2-2h-9v-9Z"
+                          />
+                        </svg>
                     </button>
 
                     <fieldset class="row">
