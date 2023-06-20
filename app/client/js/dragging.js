@@ -236,7 +236,7 @@ export const dragging = () => {
         } else if (event.key === "ArrowRight") {
           // Rotate right
           dragTarget.rotation += Math.PI / 4; // Rotate by 45 degrees clockwise
-        } else if (event.key === "Delete" || event.keyCode === 46) {
+        } else if (event.key === "Delete" || event.key === "Backspace" || event.keyCode === 46) {
           // Delete the item
           if (dragTarget) {
             app.stage.removeChild(dragTarget);
@@ -244,6 +244,7 @@ export const dragging = () => {
           }
         }
       }
+      
       
 
     function onKeyUp(event) {
