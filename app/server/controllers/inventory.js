@@ -90,6 +90,8 @@ export const deleteInvItem = async (req, res) => {
       },
     });
 
+    console.log(req.params);
+
     if (!inventoryItem) {
       res.status(404).json({
         status: "Item not found, try another id",

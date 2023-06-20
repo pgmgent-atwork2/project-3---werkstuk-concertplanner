@@ -1,5 +1,3 @@
-import { log } from "handlebars/runtime";
-
 export const smoothScroll = () => {
   const $smoothScrollLinks = document.querySelectorAll(
     "[data-scroll='smooth-scroll']"
