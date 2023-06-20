@@ -1,0 +1,19 @@
+img {
+  width: 10rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.flex-podium {
+  display: flex;
+  justify-content: space-around;
+}
+
+.canvas {
+  border: black 2px solid;
+  overflow-y: scroll;
+  min-height: 35rem;
+margin: auto;
+}
