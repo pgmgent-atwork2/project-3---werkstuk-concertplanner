@@ -101,10 +101,23 @@
       box-shadow: 0 0 10px var(--light);
       flex-grow: 1;
       display: flex;
+      position: relative;
+
+      & .inv-card__delete {
+        position: absolute;
+        top: -.1rem;
+        right: -.5rem;
+
+        & button {
+          border: none;
+          background: none;
+          cursor: pointer;
+        }
+      }
     }
 
     & .card__img {
-      width: 50%;
+      width: 45%;
       height: 100%;
       background-color: var(--primary);
     }

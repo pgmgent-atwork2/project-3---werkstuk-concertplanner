@@ -4,12 +4,16 @@
 
 .grid-row {
     display: grid;
-}
 
-.grid-row--three {
-    grid-template-columns: repeat(3, 2fr);
-}
-
-.grid-row--four {
-    grid-template-columns: 2fr 2fr 2fr 1fr;
+    &.grid-row--three {
+        grid-template-columns: repeat(3, 2fr);
+    }
+    
+    &.grid-row--four {
+        grid-template-columns: 2fr 2fr 2fr 1fr;
+    }
+    
+    &.grid-row--space {
+        grid-template-columns: 4fr 2fr 1fr;
+    }
 }

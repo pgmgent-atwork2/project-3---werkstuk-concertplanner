@@ -18,6 +18,10 @@ export default new EntitySchema({
       type: "varchar",
       nullable: true,
     },
+    registration_date: {
+      type: "varchar",
+      nullable: true,
+    },
   },
   relations: {
     user_meta: {

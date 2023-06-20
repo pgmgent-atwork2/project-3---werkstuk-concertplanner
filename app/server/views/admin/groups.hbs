@@ -1,0 +1,53 @@
+<div class="container container--normall">
+    <section class="block intro">
+        <h1 class="title--second">
+            Groepen
+        </h1>
+
+        <p>
+            Hier kunt u alle groepen zien die geregistreerd zijn en kunt u zelf een plan opstellen voor hun.
+        </p>
+    </section>
+
+    <section class="block block--bottom listing">
+        <div class="grid-row grid-row--space listing__titles">
+            <strong>
+                Naam groep / gebruiker:
+            </strong>
+            
+            <strong class="to-left-double">
+                Datum geregistreerd:
+            </strong>
+
+            <strong class="to-left-double">
+                Plan opstellen:
+            </strong>
+        </div>
+
+        <div>
+            {{#if group}}
+                {{#each group}}
+                    <div id="{{this.id}}" class="grid-row grid-row--space listing__item">
+                        <span class="text text--big">
+                            {{this.user_meta.name}}
+                        </span>
+
+                        <span>
+                            {{this.registration_date}}
+                        </span>
+
+                        <div class="listening__btns">
+                            <a class="btn btn--tertiairy group-btn" href="/plan-opstellen">
+                                Plan opstellen
+                            </a>
+                        </div>
+                    </div>
+                {{/each}}
+            {{else}}
+                <span class="listing_empty-message">
+                    U heeft nog geen plannen aangemaakt.
+                </span>
+            {{/if}}
+        </div>
+    </section>
+</div>

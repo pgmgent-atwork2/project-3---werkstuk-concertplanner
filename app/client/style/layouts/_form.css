@@ -42,3 +42,54 @@
         cursor: pointer;
     }
 }
+
+.add-inv-card {
+    position: relative;
+
+    & .add-inv {
+        border: none;
+        background: none;
+        cursor: pointer;
+        position: absolute;
+        bottom: -.1rem;
+        right: -.5rem;
+    }
+}
+
+.add-inventory-form {
+    & fieldset {
+        padding: var(--padding-base);
+        border: none;
+        flex-wrap: wrap;
+        gap: var(--spacing-s);
+    }
+
+    & div {
+        width: 35%;
+        flex-grow: 1;
+
+        & input {
+            width: 100%;
+        }
+    }
+
+    & div:last-child {
+        max-width: 50%;
+    }
+
+    & .small-add-field {
+        max-width: 30%;
+    }
+
+    & label {
+        color: var(--tertiairy);
+        display: block;
+        margin-bottom: calc(var(--spacing-s) / 2);
+    }
+
+    & .add-sizes {
+        max-width: 54%;
+        gap: var(--spacing-s);
+        align-items: flex-end;
+    }
+}

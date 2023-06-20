@@ -15,7 +15,7 @@
 
     <section class="block page-half text text--intro-size">
         <div class="page-half__form">
-            <h1 class="title--first">
+            <h1 class="title title--first">
                 <span>
                     <a href="/login">
                         Login
@@ -38,6 +38,8 @@
                     {{#each inputs}}
                         {{>form-input this}}
                     {{/each}}
+
+                    <input type="hidden" name="registration_date" value="{{getDate}}">
                 </fieldset>
 
                 <span>

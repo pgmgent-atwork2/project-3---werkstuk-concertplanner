@@ -1,85 +1,180 @@
 <h1 class="sr-only">
-    Beschikbaar materiaal
+  Beschikbaar materiaal
 </h1>
 
 <div class="container container--normall">
-    <section class="block intro">
-        <h2>
-            Beschikbaar
-        </h2>
+  <section class="block intro">
+    <h2>
+      Beschikbaar
+    </h2>
 
-        <p>
-            Bent u niet zeker of wij een bepaald element ter beschikking hebben? Dan bent u hier aan het juiste adres. Hier kunt u zien welke elementen wij ter beschikking hebben en hoeveel er van elk zijn.
-        </p>
-    </section>
+    <p>
+      Bent u niet zeker of wij een bepaald element ter beschikking hebben? Dan
+      bent u hier aan het juiste adres. Hier kunt u zien welke elementen wij ter
+      beschikking hebben en hoeveel er van elk zijn.
+    </p>
+  </section>
 </div>
 
 <section>
-    <div class="container container--normall block block--collections">
-        <ul class="block--collections__list">
-            {{#each collection}}
-                <li data-scroll="smooth-scroll" class="btn btn--primary">
-                    <a href="#{{this.label}}">
-                        {{this.label}}
-                    </a>
-                </li>
-            {{/each}}
-        </ul>
+  <div class="container container--normall block block--collections">
+    <ul class="block--collections__list">
+      {{#each collection}}
+        <li class="btn btn--primary">
+          <a data-scroll="smooth-scroll" href="#{{this.label}}">
+            {{this.label}}
+          </a>
+        </li>
+      {{/each}}
+    </ul>
 
-        <a href="/plan-opstellen" class="btn btn--tertiairy">
-            Plan opstellen
-        </a>
-    </div>
+    <a href="/plan-opstellen" class="btn btn--tertiairy">
+      Plan opstellen
 
-    <div class="block block--bottom block--inventory">
-        {{#each collection}}
-            <div class="container container--normall block">
-                <h3 id="{{this.label}}" class="collection__titles text text--big">
-                    {{this.label}}
-                </h3>
+    </a>
+  </div>
+
+  <div class="block block--bottom block--inventory">
+    {{#each collection}}
+      <div class="container container--normall block">
+        <h3 id="{{this.label}}" class="collection__titles text text--big">
+          {{this.label}}
+        </h3>
+      </div>
+
+      <ul class="container container--wide inventory-list block">
+        {{#each this.inventory}}
+          <li class="inventory-list__card">
+            {{#eq ../../user.role.label "admin"}}
+                <form class="inv-card__delete" action="/inventory/{{this.id}}">
+                    <button type="submit" formmethod="get">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"><path fill="#E94A3D" d="M0 0h48v48H0z"/><g clip-path="url(#a)"><path fill="#fff" d="M34.63 16.476a2.217 2.217 0 0 0 0-3.138 2.217 2.217 0 0 0-3.138 0l-7.061 7.06-7.061-7.06a2.217 2.217 0 0 0-3.138 0 2.217 2.217 0 0 0 0 3.138l7.06 7.06-7.06 7.062a2.217 2.217 0 0 0 0 3.138c.868.868 2.27.868 3.138 0l7.06-7.06 7.062 7.06c.868.868 2.27.868 3.138 0a2.217 2.217 0 0 0 0-3.138l-7.06-7.061 7.06-7.061Z"/></g><defs><clipPath id="a"><path fill="#fff" d="m26 0 21.968 21.968-25.106 25.106L.894 25.106z"/></clipPath></defs></svg>
+                    </button>
+                </form>
+            {{/eq}}
+
+            <div class="card__img" style="background:{{this.color}}"></div>
+
+            <div class="card__text">
+              <strong class="card__title">
+                {{this.label}}
+              </strong>
+
+              <span class="card__description">
+                Momenteel zijn er
+                {{this.quantity}}
+
+                beschikbaar!
+              </span>
             </div>
-
-            <ul class="container container--wide inventory-list block">
-                {{#each this.inventory}}
-                    <li class="inventory-list__card">
-                        <svg class="card__img" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 50 50" viewBox="0 0 50 50">
-                            <path d="M0 0h50v50H0z" style="fill:{{this.color}}" stroke="var(--secondary)" stroke-width="3"/>
-
-                            <path d="M37.09 24.34 25 7.25 12.91 24.34h8.37v18.41h7.44V24.34z" style="fill:#fff"/>
-                        </svg>
-
-                        <div class="card__text">
-                            <strong class="card__title">
-                                {{this.label}}
-                            </strong>
-                            
-                            <span class="card__description">
-                                Momenteel zijn er {{this.quantity}} beschikbaar!
-                            </span>
-                        </div>
-                    </li>
-                {{/each}}
-            </ul>
+          </li>
         {{/each}}
-    </div>
+
+        {{#eq ../user.role.label "admin"}}
+            <li class="inventory-list__card add-inv-card">
+                <form class="add-inventory-form" action="/inventaris">
+                    <button class="add-inv" type="submit" formmethod="post">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="48"
+                        height="48"
+                        fill="none"
+                    ><path fill="#BE9664" d="M0 0h48v48H0z" /><path
+                        fill="#fff"
+                        d="M26 13c0-1.106-.894-2-2-2-1.106 0-2 .894-2 2v9h-9c-1.106 0-2 .894-2 2 0 1.106.894 2 2 2h9v9c0 1.106.894 2 2 2 1.106 0 2-.894 2-2v-9h9c1.106 0 2-.894 2-2 0-1.106-.894-2-2-2h-9v-9Z"
+                        /></svg>
+                    </button>
+
+                    <fieldset class="row">
+                      <input type="hidden" value="{{this.id}}" name="collection_id">
+                      
+                      <div>
+                          <label for="label">
+                          Naam:
+                          </label>
+
+                          <input required type="text" name="label" />
+                      </div>
+
+                      <div>
+                          <label for="color">
+                          Kleur:
+                          </label>
+
+                          <input required type="text" name="color" />
+                      </div>
+
+                      <div class="small-add-field">
+                          <label for="quantity">
+                          Aantal:
+                          </label>
+
+                          <input required type="text" name="quantity" />
+                      </div>
+
+                      <div class="row add-sizes">
+                          <div class="fields">
+                          <label for="height">
+                              Lengte:
+                          </label>
+
+                          <input required type="text" name="height" />
+                          </div>
+
+                          <span>
+                          x
+                          </span>
+
+                          <div class="add-">
+                          <label for="width">
+                              Breedte:
+                          </label>
+
+                          <input required type="text" name="width" />
+                          </div>
+                      </div>
+                    </fieldset>
+                </form>
+            </li> 
+        {{/eq}}
+      </ul>
+    {{/each}}
+  </div>
 </section>
 
-<section class="block block--lightblue">
+{{#eq user.role.label "user"}}
+    <section class="block block--lightblue">
     <div class="container container--normall">
         <div class="block--lightblue__content">
-            <h2>
-                Vraag aan
-            </h2>
+        <h2>
+            Vraag aan
+        </h2>
 
-            <p>
-                Ziet u een bepaald instrument niet staan of zijn er niet genoeg van een specifiek element? <span class="active span--inline">Aarzel dan niet om ons te contacteren!</span> Wij kunnen u misschien helpen met uw probleem.
-            </p>
+        <p>
+            Ziet u een bepaald instrument niet staan of zijn er niet genoeg van een
+            specifiek element?
+            <span class="active span--inline">Aarzel dan niet om ons te contacteren!</span>
+            Wij kunnen u misschien helpen met uw probleem.
+        </p>
 
-            <a href="/vraag-aan" class="btn btn--tertiairy">
-                Ga naar aanvragen
-            </a>
+        <a href="/vraag-aan" class="btn btn--tertiairy">
+            Ga naar aanvragen
+        </a>
         </div>
 
-        <svg class="circle-shape" xmlns="http://www.w3.org/2000/svg" width="599" height="599" fill="none"><circle cx="299.5" cy="299.5" r="298.5" stroke="var(--secondary)" stroke-width="2"/></svg>
+        <svg
+        class="circle-shape"
+        xmlns="http://www.w3.org/2000/svg"
+        width="599"
+        height="599"
+        fill="none"
+        ><circle
+            cx="299.5"
+            cy="299.5"
+            r="298.5"
+            stroke="var(--secondary)"
+            stroke-width="2"
+        /></svg>
     </div>
-</section>
+    </section>
+{{/eq}}

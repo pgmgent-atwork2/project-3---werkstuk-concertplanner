@@ -30,6 +30,9 @@ html {
 
 body {
   overflow-x: hidden;
+  font-family: "Sailec";
+  font-style: normal;
+  font-weight: 200;
   font-size: var(--read-text-size);
 }
 
@@ -78,10 +81,12 @@ a {
 .active--nav {
   color: var(--secondary);
   text-decoration: underline;
+  font-weight: 300;
 }
 
 .active {
   color: var(--secondary);
+  font-weight: 600;
 }
 
 .underline {

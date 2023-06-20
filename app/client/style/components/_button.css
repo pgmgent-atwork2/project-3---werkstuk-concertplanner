@@ -1,4 +1,7 @@
 .btn {
+    font-family: "Sailec";
+    font-style: normal;
+    font-weight: 300;
     width: 11.8rem;
     color: var(--bright);
     background-color: var(--primary);
@@ -29,4 +32,8 @@
         background: none;
         border: 2px solid var(--secondary);
     }
+}
+
+.group-btn {
+    display: block;
 }

@@ -16,8 +16,6 @@ export const getIncommingPlanPage = async (req, res) => {
       relations: ["user", "user.user_meta"],
     });
 
-    console.log(getPlans);
-
     res.render("admin/plans-in", {
       user: getLoggedInUser,
       plan: getPlans,
